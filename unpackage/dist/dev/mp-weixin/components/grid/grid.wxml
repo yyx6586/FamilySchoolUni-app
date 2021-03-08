@@ -1,0 +1,1 @@
+<view class="grid"><block wx:for="{{gridList}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="grid-item"><view data-event-opts="{{[['tap',[['goToVue',['$event',index]]]]]}}" class="grid-view" bindtap="__e"><image class="grid-img" src="{{item.url}}"></image></view><text class="grid-text">{{item.text}}</text></view></block></view>

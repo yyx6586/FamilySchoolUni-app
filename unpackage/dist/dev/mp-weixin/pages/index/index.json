@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "grid": "/components/grid/grid",
+    "carousel": "/components/vear-carousel/vear-carousel"
+  }
+}

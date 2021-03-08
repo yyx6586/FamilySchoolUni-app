@@ -1,0 +1,122 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	    // {
+	    // 	"path": "pages/login/index",
+	    // 	"style": {
+	    // 		"navigationBarTitleText": "登录"
+	    // 	}
+	    // },
+	    {
+	    	"path": "pages/index/index",
+	    	"style": {
+	    		"navigationBarTitleText": "首页"
+	    	}
+	    },
+		{
+			"path": "pages/my/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/updatePassword/index",
+			"style": {
+				"navigationBarTitleText": "修改密码"
+			}
+		},
+		{
+			"path": "pages/personalInformation/index",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		},
+		{
+			"path": "pages/address/index",
+			"style": {
+				"navigationBarTitleText": "通讯录"
+			}
+		},
+		{
+			"path": "pages/detailsInformation/index",
+			"style": {
+				"navigationBarTitleText": "详情信息"
+			}
+		},
+		{
+			"path": "pages/notice/index",
+			"style": {
+				"navigationBarTitleText": "通知"
+			}
+		},
+		{
+			"path": "pages/growRecord/index",
+			"style": {
+				"navigationBarTitleText": "成长记录"
+			}
+		},
+		{
+			"path": "pages/homework/index",
+			"style": {
+				"navigationBarTitleText": "作业"
+			}
+		},
+		{
+			"path": "pages/grade/index",
+			"style": {
+				"navigationBarTitleText": "成绩"
+			}
+		},
+		{
+			"path": "pages/notice/release",
+			"style": {
+				"navigationBarTitleText": "已发布通知"
+			}
+		},
+		{
+			"path": "pages/notice/noticeDetails",
+			"style": {
+				"navigationBarTitleText": "通知详情"
+			}
+		},
+		{
+			"path": "pages/homework/release",
+			"style": {
+				"navigationBarTitleText": "已布置作业"
+			}
+		},
+		{
+			"path": "pages/homework/homeworkDetails",
+			"style": {
+				"navigationBarTitleText": "作业详情"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar":{
+	        "color":"#333",
+			"fontSize":"15rpx",
+	        "selectedColor":"deepskyblue",
+	        "backgroundColor":"#eee",
+	        "borderStyle":"black",
+	        "list":[
+	            {
+	                "pagePath":"pages/index/index",
+	                "text":"首页",
+	                "iconPath":"static/tabbar/shouye_normal.png",
+	                "selectedIconPath":"static/tabbar/shouye_focus.png"
+	            },
+	            {
+	                "pagePath":"pages/my/index",
+	                "text":"我的",
+	                "iconPath":"static/tabbar/my_normal.png",
+	                "selectedIconPath":"static/tabbar/my_focus.png"
+	            }
+	        ]
+	    }
+
+}

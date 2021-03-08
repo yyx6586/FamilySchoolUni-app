@@ -1,0 +1,43 @@
+
+page{
+	background-color: #F5F7FA;
+}
+.first-view{
+	height: 130rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack:start;
+	-webkit-justify-content:flex-start;
+	        justify-content:flex-start;
+	-webkit-box-align:center;
+	-webkit-align-items:center;
+	        align-items:center;
+	margin-top: 30rpx;
+	background-color: #FFFFFF;
+}
+.passwordText{
+	margin-left: 30rpx;
+	margin-right: 20rpx;
+}
+.password-input{
+	width: 300rpx;
+	font-size: 40rpx;
+	color: #333333;
+	border-bottom: 1rpx solid #C8C7CC;
+}
+.update{
+	width: 100%;
+	height: 80rpx;
+	color: white;
+	line-height: 80rpx;
+	margin-top: 60rpx;
+	text-align: center;
+	vertical-align:middle;
+	background-color: #007AFF;
+}
+

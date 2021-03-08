@@ -1,0 +1,11 @@
+
+.swiper{
+	height: 20%;
+	width: 100%;
+}
+/* swiper-item 里面的图片高度 */
+.img{
+	width: 100%;
+	height: 20%;
+}
+

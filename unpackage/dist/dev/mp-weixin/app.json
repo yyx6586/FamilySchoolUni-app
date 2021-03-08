@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/my/index",
+    "pages/updatePassword/index",
+    "pages/personalInformation/index",
+    "pages/address/index",
+    "pages/detailsInformation/index",
+    "pages/notice/index",
+    "pages/growRecord/index",
+    "pages/homework/index",
+    "pages/grade/index",
+    "pages/notice/release",
+    "pages/notice/noticeDetails",
+    "pages/homework/release",
+    "pages/homework/homeworkDetails"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#333",
+    "fontSize": "15rpx",
+    "selectedColor": "deepskyblue",
+    "backgroundColor": "#eee",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/shouye_normal.png",
+        "selectedIconPath": "static/tabbar/shouye_focus.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "static/tabbar/my_normal.png",
+        "selectedIconPath": "static/tabbar/my_focus.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "banner": "/components/banner/banner",
+    "pull-down": "/components/pull-down/pull-down"
+  }
+}
