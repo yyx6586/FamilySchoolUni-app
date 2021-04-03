@@ -2,12 +2,12 @@
 	<view>
 		<!-- 顶部图片 -->
 		<view>
-			<image src="../../static/index/two.jpeg" style="height: 350rpx;"></image>
+			<image src="../../static/index/two.jpeg" style="height: 350rpx;width: 100%;"></image>
 		</view>
 		
 		<!-- 头像 -->
 		<view class="phone-view" @click="goToPersonalInformation">
-			<image class="phone-left-img" src="../../static/index/three.jpg"></image>
+			<image class="phone-left-img" :src="src"></image>
 			<view style="margin-left: 30rpx;">{{name}}</view>
 			<image class="phone-right-img" src="../../static/return_right.png"></image>
 		</view>
@@ -49,13 +49,51 @@
 </template>
 
 <script>
+	import * as config from '@/common/config.js'
+	import {mapActions, mapMutations, mapState, mapGetters} from 'vuex';
 	export default {
 		data() {
 			return {
-				name: "姓名"
+				name: "",
+				src:"../../static/index/three.jpg",
+				account:""
 			}
 		},
+		
+		onLoad() {
+			this.name = uni.getStorageSync('name'),
+			this.account = uni.getStorageSync('account')
+			console.log(this.account)
+		},
+		
+		async mounted() {
+			// 显示加载框
+			uni.showLoading({
+			    title: '加载中...'
+			});
+			
+			// 查询头像
+			await this.selectUrl({"account":this.account}).then(res => {
+					console.log(res)
+					if(res.data != null){
+						this.src = config.BASIC_API + res.data.url
+						console.log(this.src)
+					}else{
+						this.src = "../../static/index/three.jpg" 
+					}
+				})
+			
+			
+			//关闭加载框
+			uni.hideLoading();
+			
+		},
+		
 		methods:{
+			...mapActions({
+				selectUrl:'personalInformation/selectUrl'
+			}),
+			
 			goToUpdatePassword(){
 				uni.navigateTo({
 					url:"../updatePassword/index",
@@ -87,6 +125,9 @@
 			 * @param {Object} value
 			 */
 			confirm(done,value){
+				// 清空本地缓存
+				uni.clearStorageSync();	
+				
 			    // TODO 做一些其他的事情，手动执行 done 才会关闭对话框
 			    uni.navigateTo({
 			    	url:"../login/index",

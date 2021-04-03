@@ -25,31 +25,26 @@
 				default(){
 					return ''
 				}
-			},
-			count:{
-				type:Number,
-				default(){
-					return 0
-				}
-			},
+			}
 		},
 		
 		data(){
 			return{
 				showHidden:false,
 				inputValue:"",
+				count: 0
 			}
 		},
-		
 		methods:{
 			// 点击页面事件 隐藏需要隐藏的区域
 			hiddenClick () {
 			    this.showHidden = false;
 			},
 			getValue(e,i){
+				this.count = i
 				this.inputValue = this.textList[i];
 				this.showHidden = false;
-				console.log(this.inputValue);
+				// console.log(this.inputValue);
 				
 				 this.$emit("click",this.inputValue,i);
 			},
@@ -82,7 +77,7 @@
 	}
 	
 	.pull_input{
-		width: 150rpx;
+		width: 200rpx;
 		height: 50rpx; 
 		font-size: 35rpx;
 		border: 1rpx solid #BEBEBE; 

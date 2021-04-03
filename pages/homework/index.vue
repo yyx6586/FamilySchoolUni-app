@@ -2,44 +2,34 @@
 	<view>
 		<!-- 教师 -->
 		<view>
-			<form class="teacher-form" @submit="formSubmit" @reset="formReset">
-				<!-- 通知班级 -->
-				<view class="first-view">
-					<view class="title-view">年级与班级</view>
-					<view style="display: flex;flex-direction: row;justify-content:flex-start;background-color: #F4F5F6;padding-top: 20rpx;padding-bottom: 30rpx;margin-top: 15rpx;">
-						<view style="margin-left: 20rpx;">
-							<pullDown :text="grade" :textList="gradeList" :count="gradeCount" @click="getGradeValue"></pullDown>
-						</view>
-						<view style="margin-left: 60rpx;">
-							<pullDown :text="banji" :textList="banjiList" :count="banjiCount" @click="getBanJiValue"></pullDown>
-						</view>
-					</view>
-				</view>
+			<view class="teacher-form">
 				
 				<!-- 科目 -->
-				<view class="first-view">
+				<view class="first-view" style="display: flex;flex-direction: row;justify-content:flex-start;text-align: center;">
 					<view class="title-view">科目</view>
-					<textarea class="textarea-value" placeholder="请输入科目" style="height: 50rpx;"></textarea>
+					<view style="margin-top: 30rpx;">
+						<pullDown :textList="subjectList" @click="getSubjectValue"></pullDown>
+					</view>
 				</view>
 				
 				<!-- 知识点 -->
 				<view class="first-view">
 					<view class="title-view">知识点</view>
-					<textarea class="textarea-value" placeholder="请输入知识点" style="height: 150rpx;"></textarea>
+					<textarea class="textarea-value" v-model="title" placeholder="请输入知识点" style="height: 150rpx;"></textarea>
 				</view>
 				
 				<!-- 作业内容 -->
 				<view class="first-view">
 					<view class="title-view">内容</view>
-					<textarea class="textarea-value" placeholder="请输入作业内容"></textarea>
+					<textarea class="textarea-value" v-model="content" placeholder="请输入作业内容"></textarea>
 				</view>
 				
 				<!-- 按钮 -->
 				<view class="first-view-btn">
-					<button class="submit-btn" form-type="submit">发布</button>
-					<button class="reset-btn" type="default" form-type="reset">重置</button>
+					<button class="submit-btn" @click="submit">发布</button>
+					<button class="reset-btn" @click="reset">重置</button>
 				</view>
-			</form>
+			</view>
 			
 			<!-- 查看已布置作业 -->
 			<view class="release-btn" @click="release">查看已布置作业</view>
@@ -48,33 +38,113 @@
 </template>
 
 <script>
+	import string from '@/utils/string.js'
+	import {mapActions, mapMutations, mapState, mapGetters} from 'vuex';
+	import pullDown from '@/components/pull-down/pull-down.vue'
 	export default{
+		components: {
+			pullDown
+		},
 		data() {
 			return {
-				grade:"年级",
-				gradeList:["一年级","二年级","三年级","四年级","五年级","六年级"],
-				gradeCount:0,
-				
-				banji:"班级",
-				banjiList:["1班","2班","3班","4班","5班","6班"],
-				banjiCount:0,
+				subjectList:["语文","数学","英语","科学","美术","音乐","体育"],
+				subject_name:"语文",
+				title:"",
+				content:"",
+				account:"",
+				gradeclass_id:""
 			}
 		},
+		onLoad(option) {
+			this.account = uni.getStorageSync('account')
+			this.gradeclass_id = option.gradeclass_id
+			
+			console.log(this.account)
+			console.log(this.gradeclass_id)
+		},
+		
 		methods:{
-			formSubmit: function(e) {
-			    console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
-			    var formdata = e.detail.value
-			    uni.showModal({
-			        content: '表单数据内容：' + JSON.stringify(formdata),
-			        showCancel: false
-			    });
+			...mapActions({
+				homework:'homework/homework'
+			}),
+			
+			getSubjectValue(e,i){
+				this.subject_name = e
+				console.log(e)
 			},
-			formReset: function(e) {
-			    console.log('清空数据')
+			
+			submit(){
+				uni.showLoading({
+				    title: '加载中...'
+				});
+				
+				if(string.isNullAndEmpty(this.account)){
+					uni.showToast({
+					    title: '作业发布失败，请退出重新登录！',
+						icon:'none',
+						mask:true,
+					    duration: 2000
+					});
+					return;
+				}
+				if(string.isNullAndEmpty(this.gradeclass_id)){
+					uni.showToast({
+					    title: '作业发布失败，请退出重新登录！',
+						icon:'none',
+						mask:true,
+					    duration: 2000
+					});
+					return;
+				}
+				if(string.isNullAndEmpty(this.subject_name)){
+					uni.showToast({
+					    title: '作业发布失败，请退出重新登录！',
+						icon:'none',
+						mask:true,
+					    duration: 2000
+					});
+					return;
+				}
+				if(string.isNullAndEmpty(this.content)){
+					uni.showToast({
+					    title: '作业内容不能为空！',
+						icon:'none',
+						mask:true,
+					    duration: 2000
+					});
+					return;
+				}
+				
+				console.log(this.subject_name)
+				console.log(this.gradeclass_id)
+				this.homework({
+					"account":this.account,
+					"gradeclass_id":this.gradeclass_id,
+					"title":this.title,
+					"subject_name":this.subject_name,
+					"homework":this.content,
+					"showBadge":"true" 
+				}).then(res => {
+					console.log(res)
+					uni.showToast({
+					    title: res.msg,
+						icon:'none',
+						mask:true,
+					    duration: 2000
+					});
+				})
+				
+				//关闭加载框
+				uni.hideLoading();
+			},
+			
+			reset() {
+			    this.title = "",
+				this.content = ""
 			},
 			release(){
 				uni.navigateTo({
-					url:"./release",
+					url:"./release?gradeclass_id=" + this.gradeclass_id,
 				})
 			}
 		}

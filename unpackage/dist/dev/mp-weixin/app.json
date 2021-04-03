@@ -1,19 +1,22 @@
 {
   "pages": [
+    "pages/login/index",
+    "pages/notice/index",
+    "pages/homework/homeworkDetails",
+    "pages/notice/noticeDetails",
+    "pages/grade/index",
+    "pages/growRecord/index",
     "pages/index/index",
     "pages/my/index",
     "pages/updatePassword/index",
     "pages/personalInformation/index",
     "pages/address/index",
-    "pages/detailsInformation/index",
-    "pages/notice/index",
-    "pages/growRecord/index",
+    "pages/address/detailsInformation",
     "pages/homework/index",
-    "pages/grade/index",
     "pages/notice/release",
-    "pages/notice/noticeDetails",
     "pages/homework/release",
-    "pages/homework/homeworkDetails"
+    "pages/growRecord/release",
+    "pages/grade/release"
   ],
   "subPackages": [],
   "window": {

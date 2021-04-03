@@ -1,11 +1,41 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-	    // {
-	    // 	"path": "pages/login/index",
-	    // 	"style": {
-	    // 		"navigationBarTitleText": "登录"
-	    // 	}
-	    // },
+	    {
+	    	"path": "pages/login/index",
+	    	"style": {
+	    		"navigationBarTitleText": "登录"
+	    	}
+	    },
+		{
+			"path": "pages/notice/index",
+			"style": {
+				"navigationBarTitleText": "通知"
+			}
+		},
+		{
+			"path": "pages/homework/homeworkDetails",
+			"style": {
+				"navigationBarTitleText": "作业详情"
+			}
+		},
+		{
+			"path": "pages/notice/noticeDetails",
+			"style": {
+				"navigationBarTitleText": "通知详情"
+			}
+		},
+		{
+			"path": "pages/grade/index",
+			"style": {
+				"navigationBarTitleText": "成绩"
+			}
+		},
+		{
+			"path": "pages/growRecord/index",
+			"style": {
+				"navigationBarTitleText": "成长记录"
+			}
+		},
 	    {
 	    	"path": "pages/index/index",
 	    	"style": {
@@ -37,21 +67,9 @@
 			}
 		},
 		{
-			"path": "pages/detailsInformation/index",
+			"path": "pages/address/detailsInformation",
 			"style": {
 				"navigationBarTitleText": "详情信息"
-			}
-		},
-		{
-			"path": "pages/notice/index",
-			"style": {
-				"navigationBarTitleText": "通知"
-			}
-		},
-		{
-			"path": "pages/growRecord/index",
-			"style": {
-				"navigationBarTitleText": "成长记录"
 			}
 		},
 		{
@@ -61,21 +79,9 @@
 			}
 		},
 		{
-			"path": "pages/grade/index",
-			"style": {
-				"navigationBarTitleText": "成绩"
-			}
-		},
-		{
 			"path": "pages/notice/release",
 			"style": {
 				"navigationBarTitleText": "已发布通知"
-			}
-		},
-		{
-			"path": "pages/notice/noticeDetails",
-			"style": {
-				"navigationBarTitleText": "通知详情"
 			}
 		},
 		{
@@ -85,9 +91,15 @@
 			}
 		},
 		{
-			"path": "pages/homework/homeworkDetails",
+			"path": "pages/growRecord/release",
 			"style": {
-				"navigationBarTitleText": "作业详情"
+				"navigationBarTitleText": "记录详情"
+			}
+		},
+		{
+			"path": "pages/grade/release",
+			"style": {
+				"navigationBarTitleText": "成绩详情"
 			}
 		}
 	],
