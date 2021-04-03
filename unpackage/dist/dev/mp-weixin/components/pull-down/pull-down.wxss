@@ -34,7 +34,7 @@
 	text-align: center;
 }
 .pull_input{
-	width: 150rpx;
+	width: 200rpx;
 	height: 50rpx; 
 	font-size: 35rpx;
 	border: 1rpx solid #BEBEBE; 

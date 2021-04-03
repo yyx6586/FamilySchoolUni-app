@@ -19,17 +19,76 @@
 		</view>
 		
 		<!-- 修改按钮 -->
-		<view class="update">修改</view>
+		<view class="update" @click="update">修改</view>
 	</view>
 </template>
 
 <script>
+	import string from '@/utils/string.js'
+	import {mapActions, mapMutations, mapState, mapGetters} from 'vuex';
+	import md5 from '@/utils/md5.js'
 	export default{
 		data() {
 			return{
 				oldPassword:"",
 				newPassword:"",
 				confirmPassword:""
+			}
+		},
+		methods:{
+			...mapActions({
+				updatePassword:'updatePassword/updatePassword'
+			}),
+			
+			update(){
+				if(string.isNullAndEmpty(this.oldPassword)){
+					uni.showToast({
+					    title: '原密码不能为空！',  
+						icon:'none',
+						mask:true,
+					    duration: 2000
+					});
+					return;
+				}
+				
+				if(string.isNullAndEmpty(this.newPassword)){
+					uni.showToast({
+					    title: '新密码不能为空！',
+						icon:'none',
+						mask:true,
+					    duration: 2000
+					});
+					return;
+				}
+				
+				if(string.isNullAndEmpty(this.confirmPassword)){
+					uni.showToast({
+					    title: '确认密码不能为空！',
+						icon:'none',
+						mask:true,
+					    duration: 2000
+					});
+					return;
+				}
+				
+				if(string.isEqual(this.newPassword,this.confirmPassword)){
+					uni.showToast({
+					    title: '新密码与确认密码不一样！',
+						icon:'none',
+						mask:true,
+					    duration: 2000
+					});
+					return;
+				}
+				
+				this.updatePassword({
+					"account": uni.getStorageSync('account'),
+					"password":md5(this.oldPassword),
+					"resetPassword":md5(this.newPassword) 
+				}).then(res => {
+					console.log(res)
+				})
+				
 			}
 		}
 	}

@@ -5,23 +5,23 @@
 		
 		<!-- 年级与班级 -->
 		<!-- 教师 -->
-		<view style="display: flex;flex-direction: row;justify-content:flex-start;margin-top: 20rpx;">
+		<view v-if="role == 1" style="display: flex;flex-direction: row;justify-content:flex-start;margin-top: 20rpx;">
 			<view style="margin-left: 70rpx;">
-				<pullDown :text="grade" :textList="gradeList" :count="gradeCount" @click="getGradeValue"></pullDown>
+				<pullDown :textList="gradeList" @click="getGradeValue"></pullDown>
 			</view>
 			<view style="margin-left: 60rpx;">
-				<pullDown :text="banji" :textList="banjiList" :count="banjiCount" @click="getBanJiValue"></pullDown>
+				<pullDown :textList="banjiList" @click="getBanJiValue"></pullDown>
 			</view>
 		</view>
 		
 		<!-- 家长 -->
-		<!-- <view style="margin-left: -360rpx;margin-top: 20rpx;">
-			<pullDown :text="banji" :textList="banjiList" :count="banjiCount" @click="getBanJiValue"></pullDown>
-		</view> -->
+		<view v-if="role == 2" style="margin-left: -360rpx;margin-top: 20rpx;">
+			<view style="font-size: 40rpx;">{{ nianji + bnaji}}</view>
+		</view>
 		
 		<!-- 功能选择 -->
 		<view style="margin-top: 20rpx;">
-			<grid :gridList="gridList" @click="goToVue"/> 
+			<grid :gridList="gridList" @click="goToVue"/>  
 		</view>
 	</view> 
 </template>
@@ -29,11 +29,15 @@
 <script>
 	import carousel from '@/components/vear-carousel/vear-carousel'
 	import grid from '@/components/grid/grid.vue'
+	import pullDown from '@/components/pull-down/pull-down.vue'
+	import string from '@/utils/string.js'
+	import {mapActions, mapMutations, mapState, mapGetters} from 'vuex';
 	
 	export default { 
 		components: {
 		    carousel,
-			grid
+			grid,
+			pullDown
 		},
 		data() {
 			return {
@@ -71,29 +75,192 @@
 				],
 				grade:"年级",
 				gradeList:["一年级","二年级","三年级","四年级","五年级","六年级"],
-				gradeCount:0,
 				
-				banji:"班级",
+				banjiText:"班级",
 				banjiList:["1班","2班","3班","4班","5班","6班"],
-				banjiCount:0,
 				
-				role:2,  //1为教师，2为家长
+				gradeValue: "一年级",  //年级
+				banjiValue: "1班",  //班级
+				role:"",
+				nianji:"",
+				banji:"",
+				gradeclass_id:""
 			}
 		},
 		onLoad() {
-
+			this.role = uni.getStorageSync('role')
+			console.log(uni.getStorageSync('token'))
+		},
+		async mounted() {
+			// 显示加载框
+			uni.showLoading({
+			    title: '加载中...'
+			})
+			
+		    if(this.role == 2){
+				await this.selectGrade({
+					"account":uni.getStorageSync('account')
+				}).then(res => {
+					if (res.data != null) {
+						this.gradeclass_id = res.data.gradeclass_id
+						this.gradeClassName({
+							"gradeclass_id":res.data.gradeclass_id
+						}).then(re => {
+							console.log(re)
+							this.nianji = re.data.grade_name
+							this.banji = re.data.class_name
+						})
+					}else{
+						uni.showToast({
+						    title: '获取年级与班级错误，请重新登录！',
+							icon:'none',
+							mask:true,
+						    duration: 2000
+						});
+						return;
+					}
+				})
+			}
+			
+			//关闭加载框
+			uni.hideLoading();
 		},
 		methods: {
+			...mapActions({
+				gradeClassId:'index/gradeClassId',
+				selectGrade:'address/selectGrade',
+				gradeClassName:'index/gradeClassName'
+			}),
+			
+			getGradeValue(e,i){
+				this.gradeValue = e
+				// console.log(e)
+			},
+			
+			getBanJiValue(e,i){
+				this.banjiValue = e
+				// console.log(e)
+			},
+			
 			goToVue(e,i){
 				if(i == 0){
-					uni.navigateTo({
-						url:"../grade/index",
+					uni.showLoading({
+					    title: '加载中...'
 					})
+					
+					if(this.role == 1){
+						if(string.isNullAndEmpty(this.gradeValue)){
+								uni.showToast({
+								    title: '请选择年级！',
+									icon:'none',
+									mask:true,
+								    duration: 2000
+								});
+								return;
+							}
+							
+							if(string.isNullAndEmpty(this.banjiValue)){
+								uni.showToast({
+								    title: '请选择班级！',
+									icon:'none',
+									mask:true,
+								    duration: 2000 
+								});
+								return;
+							}
+							
+							this.gradeClassId({
+								"grade_name": this.gradeValue,
+								"class_name": this.banjiValue
+							}).then(res => {
+								console.log(res)
+								if (res.data != null) {
+									uni.navigateTo({
+										url:"../grade/index?gradeclass_id=" + res.data.gradeclass_id,
+									})
+									//关闭加载框
+									uni.hideLoading();
+								}else{
+									uni.showToast({
+									    title: '获取数据错误，请重新点击！',
+										icon:'none',
+										mask:true,
+									    duration: 2000
+									});
+									//关闭加载框
+									uni.hideLoading();
+									return;
+								}
+						
+							})
+						}else{
+						    uni.navigateTo({
+							    url:"../grade/release?gradeclass_id=" + this.gradeclass_id,
+						    })
+						    //关闭加载框
+						    uni.hideLoading();
+					}
+					
+					// uni.navigateTo({
+					// 	url:"../grade/index",
+					// })
 				}
 				if(i == 1){
-					uni.navigateTo({
-						url:"../growRecord/index",
+					uni.showLoading({
+					    title: '加载中...'
 					})
+					if(this.role == 1){
+						if(string.isNullAndEmpty(this.gradeValue)){
+								uni.showToast({
+								    title: '请选择年级！',
+									icon:'none',
+									mask:true,
+								    duration: 2000
+								});
+								return;
+							}
+							
+							if(string.isNullAndEmpty(this.banjiValue)){
+								uni.showToast({
+								    title: '请选择班级！',
+									icon:'none',
+									mask:true,
+								    duration: 2000 
+								});
+								return;
+							}
+							
+							this.gradeClassId({
+								"grade_name": this.gradeValue,
+								"class_name": this.banjiValue
+							}).then(res => {
+								console.log(res)
+								if (res.data != null) {
+									uni.navigateTo({
+										url:"../growRecord/index?gradeclass_id=" + res.data.gradeclass_id,
+									})
+									//关闭加载框
+									uni.hideLoading();
+								}else{
+									uni.showToast({
+									    title: '获取数据错误，请重新点击！',
+										icon:'none',
+										mask:true,
+									    duration: 2000
+									});
+									//关闭加载框
+									uni.hideLoading();
+									return;
+								}
+						
+							})
+						}else{
+						    uni.navigateTo({
+							    url:"../growRecord/release?gradeclass_id=" + this.gradeclass_id,
+						    })
+						    //关闭加载框
+						    uni.hideLoading();
+					}
 				}
 				if(i == 2){
 					uni.navigateTo({
@@ -101,33 +268,122 @@
 					})
 				}
 				if(i == 3){
+					uni.showLoading({
+					    title: '加载中...'
+					})
+					
 					if(this.role == 1) {
-						uni.navigateTo({
-							url:"../notice/index",
+						if(string.isNullAndEmpty(this.gradeValue)){
+							uni.showToast({
+							    title: '请选择年级！',
+								icon:'none',
+								mask:true,
+							    duration: 2000
+							});
+							return;
+						}
+						
+						if(string.isNullAndEmpty(this.banjiValue)){
+							uni.showToast({
+							    title: '请选择班级！',
+								icon:'none',
+								mask:true,
+							    duration: 2000 
+							});
+							return;
+						}
+						
+						this.gradeClassId({
+							"grade_name": this.gradeValue,
+							"class_name": this.banjiValue
+						}).then(res => {
+							console.log(res)
+							if (res.data != null) {
+								uni.navigateTo({
+									url:"../notice/index?gradeclass_id=" + res.data.gradeclass_id,
+								})
+								//关闭加载框
+								uni.hideLoading();
+							}else{
+								uni.showToast({
+								    title: '获取数据错误，请重新点击！',
+									icon:'none',
+									mask:true,
+								    duration: 2000
+								});
+								//关闭加载框
+								uni.hideLoading();
+								return;
+							}
+
 						})
 					}else{
 						uni.navigateTo({
-							url:"../notice/release",
+							url:"../notice/release?gradeclass_id=" + this.gradeclass_id,
 						})
+						//关闭加载框
+						uni.hideLoading();
 					}
 				}
 				if(i == 4){
+					uni.showLoading({
+					    title: '加载中...'
+					})
+					
 					if(this.role == 1) {
-						uni.navigateTo({
-							url:"../homework/index",
+						if(string.isNullAndEmpty(this.gradeValue)){
+							uni.showToast({
+							    title: '请选择年级！',
+								icon:'none',
+								mask:true,
+							    duration: 2000
+							});
+							return;
+						}
+						
+						if(string.isNullAndEmpty(this.banjiValue)){
+							uni.showToast({
+							    title: '请选择班级！',
+								icon:'none',
+								mask:true,
+							    duration: 2000 
+							});
+							return;
+						}
+						
+						this.gradeClassId({
+							"grade_name": this.gradeValue,
+							"class_name": this.banjiValue
+						}).then(res => {
+							console.log(res)
+							if (res.data != null) {
+								uni.navigateTo({
+									url:"../homework/index?gradeclass_id=" + res.data.gradeclass_id,
+								})
+								//关闭加载框
+								uni.hideLoading();
+							}else{
+								uni.showToast({
+								    title: '获取数据错误，请重新点击！',
+									icon:'none',
+									mask:true,
+								    duration: 2000
+								});
+								//关闭加载框
+								uni.hideLoading(); 
+								return;
+							}
 						})
 					}else{
 						uni.navigateTo({
-							url:"../homework/release",
+							url:"../homework/release?gradeclass_id=" + this.gradeclass_id,
 						})
+						//关闭加载框
+						uni.hideLoading();
 					}
 				}
-			},
-			getGradeValue(e,i){
-			},
+			}
 			
-			getBanJiValue(e,i){
-			},
 		} 
 	}
 </script>

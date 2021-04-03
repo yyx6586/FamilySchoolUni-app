@@ -3245,256 +3245,995 @@ store;exports.default = _default;
 
 /***/ }),
 
-/***/ 134:
-/*!********************************************************************************************************!*\
-  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/uni_modules/uni-popup/components/uni-popup/popup.js ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 135));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-// 定义 type 类型:弹出类型：top/bottom/center
-var config = {
-  // 顶部弹出
-  top: 'top',
-  // 底部弹出
-  bottom: 'bottom',
-  // 居中弹出
-  center: 'center',
-  // 消息提示
-  message: 'top',
-  // 对话框
-  dialog: 'center',
-  // 分享
-  share: 'bottom' };var _default =
-
-
-{
-  data: function data() {
-    return {
-      config: config,
-      popupWidth: 0,
-      popupHeight: 0 };
-
-  },
-  mixins: [_message.default],
-  computed: {
-    isDesktop: function isDesktop() {
-      return this.popupWidth >= 500 && this.popupHeight >= 500;
-    } },
-
-  mounted: function mounted() {var _this = this;
-    var fixSize = function fixSize() {var _uni$getSystemInfoSyn =
-
-
-
-
-      uni.getSystemInfoSync(),windowWidth = _uni$getSystemInfoSyn.windowWidth,windowHeight = _uni$getSystemInfoSyn.windowHeight,windowTop = _uni$getSystemInfoSyn.windowTop;
-      _this.popupWidth = windowWidth;
-      _this.popupHeight = windowHeight + windowTop;
-    };
-    fixSize();
-
-
-
-
-
-
-  } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 135:
-/*!**********************************************************************************************************!*\
-  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/uni_modules/uni-popup/components/uni-popup/message.js ***!
-  \**********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  created: function created() {
-    if (this.type === 'message') {
-      // 不显示遮罩
-      this.maskShow = false;
-      // 获取子组件对象
-      this.childrenMsg = null;
-    }
-  },
-  methods: {
-    customOpen: function customOpen() {
-      if (this.childrenMsg) {
-        this.childrenMsg.open();
-      }
-    },
-    customClose: function customClose() {
-      if (this.childrenMsg) {
-        this.childrenMsg.close();
-      }
-    } } };exports.default = _default;
-
-/***/ }),
-
 /***/ 14:
 /*!*****************************************************************************!*\
   !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules sync \.js$ ***!
   \*****************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyContext(req) {
-	var e = new Error("Cannot find module '" + req + "'");
-	e.code = 'MODULE_NOT_FOUND';
-	throw e;
+var map = {
+	"./address/actions.js": 15,
+	"./address/getters.js": 21,
+	"./address/index.js": 22,
+	"./address/mutations.js": 23,
+	"./grade/actions.js": 24,
+	"./grade/getters.js": 25,
+	"./grade/index.js": 26,
+	"./grade/mutations.js": 27,
+	"./growRecord/actions.js": 28,
+	"./growRecord/getters.js": 29,
+	"./growRecord/index.js": 30,
+	"./growRecord/mutations.js": 31,
+	"./homework/actions.js": 32,
+	"./homework/getters.js": 33,
+	"./homework/index.js": 34,
+	"./homework/mutations.js": 35,
+	"./index/actions.js": 36,
+	"./index/getters.js": 37,
+	"./index/index.js": 38,
+	"./index/mutations.js": 39,
+	"./login/actions.js": 40,
+	"./login/getters.js": 41,
+	"./login/index.js": 42,
+	"./login/mutations.js": 43,
+	"./notice/actions.js": 44,
+	"./notice/getters.js": 45,
+	"./notice/index.js": 46,
+	"./notice/mutations.js": 47,
+	"./personalInformation/actions.js": 48,
+	"./personalInformation/getters.js": 49,
+	"./personalInformation/index.js": 50,
+	"./personalInformation/mutations.js": 51,
+	"./updatePassword/actions.js": 52,
+	"./updatePassword/getters.js": 53,
+	"./updatePassword/index.js": 54,
+	"./updatePassword/mutations.js": 55
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
 }
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 14;
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 14;
 
 /***/ }),
 
-/***/ 192:
-/*!********************************************************************************************************!*\
-  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/uni_modules/uni-icons/components/uni-icons/icons.js ***!
-  \********************************************************************************************************/
+/***/ 15:
+/*!*************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/address/actions.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  "pulldown": "\uE588",
-  "refreshempty": "\uE461",
-  "back": "\uE471",
-  "forward": "\uE470",
-  "more": "\uE507",
-  "more-filled": "\uE537",
-  "scan": "\uE612",
-  "qq": "\uE264",
-  "weibo": "\uE260",
-  "weixin": "\uE261",
-  "pengyouquan": "\uE262",
-  "loop": "\uE565",
-  "refresh": "\uE407",
-  "refresh-filled": "\uE437",
-  "arrowthindown": "\uE585",
-  "arrowthinleft": "\uE586",
-  "arrowthinright": "\uE587",
-  "arrowthinup": "\uE584",
-  "undo-filled": "\uE7D6",
-  "undo": "\uE406",
-  "redo": "\uE405",
-  "redo-filled": "\uE7D9",
-  "bars": "\uE563",
-  "chatboxes": "\uE203",
-  "camera": "\uE301",
-  "chatboxes-filled": "\uE233",
-  "camera-filled": "\uE7EF",
-  "cart-filled": "\uE7F4",
-  "cart": "\uE7F5",
-  "checkbox-filled": "\uE442",
-  "checkbox": "\uE7FA",
-  "arrowleft": "\uE582",
-  "arrowdown": "\uE581",
-  "arrowright": "\uE583",
-  "smallcircle-filled": "\uE801",
-  "arrowup": "\uE580",
-  "circle": "\uE411",
-  "eye-filled": "\uE568",
-  "eye-slash-filled": "\uE822",
-  "eye-slash": "\uE823",
-  "eye": "\uE824",
-  "flag-filled": "\uE825",
-  "flag": "\uE508",
-  "gear-filled": "\uE532",
-  "reload": "\uE462",
-  "gear": "\uE502",
-  "hand-thumbsdown-filled": "\uE83B",
-  "hand-thumbsdown": "\uE83C",
-  "hand-thumbsup-filled": "\uE83D",
-  "heart-filled": "\uE83E",
-  "hand-thumbsup": "\uE83F",
-  "heart": "\uE840",
-  "home": "\uE500",
-  "info": "\uE504",
-  "home-filled": "\uE530",
-  "info-filled": "\uE534",
-  "circle-filled": "\uE441",
-  "chat-filled": "\uE847",
-  "chat": "\uE263",
-  "mail-open-filled": "\uE84D",
-  "email-filled": "\uE231",
-  "mail-open": "\uE84E",
-  "email": "\uE201",
-  "checkmarkempty": "\uE472",
-  "list": "\uE562",
-  "locked-filled": "\uE856",
-  "locked": "\uE506",
-  "map-filled": "\uE85C",
-  "map-pin": "\uE85E",
-  "map-pin-ellipse": "\uE864",
-  "map": "\uE364",
-  "minus-filled": "\uE440",
-  "mic-filled": "\uE332",
-  "minus": "\uE410",
-  "micoff": "\uE360",
-  "mic": "\uE302",
-  "clear": "\uE434",
-  "smallcircle": "\uE868",
-  "close": "\uE404",
-  "closeempty": "\uE460",
-  "paperclip": "\uE567",
-  "paperplane": "\uE503",
-  "paperplane-filled": "\uE86E",
-  "person-filled": "\uE131",
-  "contact-filled": "\uE130",
-  "person": "\uE101",
-  "contact": "\uE100",
-  "images-filled": "\uE87A",
-  "phone": "\uE200",
-  "images": "\uE87B",
-  "image": "\uE363",
-  "image-filled": "\uE877",
-  "location-filled": "\uE333",
-  "location": "\uE303",
-  "plus-filled": "\uE439",
-  "plus": "\uE409",
-  "plusempty": "\uE468",
-  "help-filled": "\uE535",
-  "help": "\uE505",
-  "navigate-filled": "\uE884",
-  "navigate": "\uE501",
-  "mic-slash-filled": "\uE892",
-  "search": "\uE466",
-  "settings": "\uE560",
-  "sound": "\uE590",
-  "sound-filled": "\uE8A1",
-  "spinner-cycle": "\uE465",
-  "download-filled": "\uE8A4",
-  "personadd-filled": "\uE132",
-  "videocam-filled": "\uE8AF",
-  "personadd": "\uE102",
-  "upload": "\uE402",
-  "upload-filled": "\uE8B1",
-  "starhalf": "\uE463",
-  "star-filled": "\uE438",
-  "star": "\uE408",
-  "trash": "\uE401",
-  "phone-filled": "\uE230",
-  "compose": "\uE400",
-  "videocam": "\uE300",
-  "trash-filled": "\uE8DC",
-  "download": "\uE403",
-  "chatbubble-filled": "\uE232",
-  "chatbubble": "\uE202",
-  "cloud-download": "\uE8E4",
-  "cloud-upload-filled": "\uE8E5",
-  "cloud-upload": "\uE8E6",
-  "cloud-download-filled": "\uE8E9",
-  "headphones": "\uE8BF",
-  "shop": "\uE609" };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = _interopRequireDefault(__webpack_require__(/*! ../../../utils/request.js */ 19));
+var config = _interopRequireWildcard(__webpack_require__(/*! ../../../common/config.js */ 20));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+var actions = {
+
+  //根据账号查找班级
+  selectGrade: function selectGrade(_ref, data) {var commit = _ref.commit,state = _ref.state;
+    return new Promise( /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(resolve, reject) {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _request.default.requestToken(config.GRADE_API, data));case 2:res = _context.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context.stop();}}}, _callee);}));return function (_x, _x2) {return _ref2.apply(this, arguments);};}());
+
+  },
+
+  //根据班级 id 查询该班级的所有教师和学生
+  selectPeople: function selectPeople(_ref3, data) {var commit = _ref3.commit,state = _ref3.state;
+    return new Promise( /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(resolve, reject) {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _request.default.requestToken(config.PEOPLE_API, data));case 2:res = _context2.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context2.stop();}}}, _callee2);}));return function (_x3, _x4) {return _ref4.apply(this, arguments);};}());
+
+  },
+
+  // 根据账号查询个人信息详情
+  personalDetails: function personalDetails(_ref5, data) {var commit = _ref5.commit,state = _ref5.state;
+    return new Promise( /*#__PURE__*/function () {var _ref6 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(resolve, reject) {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                  _request.default.requestToken(config.PERSONALDETAILS_API, data));case 2:res = _context3.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context3.stop();}}}, _callee3);}));return function (_x5, _x6) {return _ref6.apply(this, arguments);};}());
+
+  } };var _default =
+
+
+actions;exports.default = _default;
+
+/***/ }),
+
+/***/ 16:
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ 17);
+
+/***/ }),
+
+/***/ 17:
+/*!************************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = (function() {
+  return this || (typeof self === "object" && self);
+})() || Function("return this")();
+
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime &&
+  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
+
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
+
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
+
+module.exports = __webpack_require__(/*! ./runtime */ 18);
+
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch(e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
+
+
+/***/ }),
+
+/***/ 18:
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!(function(global) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  var inModule = typeof module === "object";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    if (inModule) {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  runtime.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return runtime.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+})(
+  // In sloppy mode, unbound `this` refers to the global object, fallback to
+  // Function constructor if we're in global strict mode. That is sadly a form
+  // of indirect eval which violates Content Security Policy.
+  (function() {
+    return this || (typeof self === "object" && self);
+  })() || Function("return this")()
+);
+
+
+/***/ }),
+
+/***/ 19:
+/*!*********************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/utils/request.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(uni) {function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}
+var errorResult = {
+  jsonError: [
+  { "_exceptionMessage": "系统异常，请与后台管理员联系" }] };
+
+
+
+// 无 token
+var requestNoToken = function requestNoToken() {var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'POST';
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      method: type,
+      url: url,
+      data: data,
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded' }
+
+      // dataType: 'json', 
+    }).then(function (response) {var _response = _slicedToArray(
+      response, 2),error = _response[0],res = _response[1];
+      resolve(res.data);
+    }).catch(function (error) {var _error = _slicedToArray(
+      error, 2),err = _error[0],res = _error[1];
+      reject(err);
+    });
+  });
+};
+
+// 有 token
+var requestToken = function requestToken() {var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'POST';
+  // // 请求头信息
+  // var headers = {
+  // 	'content-type': 'application/x-www-form-urlencoded',
+  // 	'token': uni.getStorageSync('token')
+  // };
+
+  // 获取 token
+  var userToken = uni.getStorageSync('token');
+
+  // // 将 token 放入请求头中
+  //    headers['token'] = userToken
+
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      method: type,
+      url: url,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'token': userToken }
+
+      // dataType: 'json', 
+    }).then(function (response) {var _response2 = _slicedToArray(
+      response, 2),error = _response2[0],res = _response2[1];
+      resolve(res.data);
+    }).catch(function (error) {var _error2 = _slicedToArray(
+      error, 2),err = _error2[0],res = _error2[1];
+      reject(err);
+    });
+  });
+};
+
+module.exports = {
+  requestNoToken: requestNoToken,
+  requestToken: requestToken };
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -9546,6 +10285,619 @@ internalMixin(Vue);
 
 /***/ }),
 
+/***/ 20:
+/*!*********************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/common/config.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.UPDATESCORE_API = exports.DELETESCORE_API = exports.SELECTSTUDENTSCORE_API = exports.SELECTSCORENAME_API = exports.INSERTSCORE_API = exports.UPDATEURL_API = exports.SELECTURL_API = exports.INSERTURL_API = exports.DELETERECORD_API = exports.UPDATERECORD_API = exports.RECORDINFORMATION_API = exports.SAVEIMG_API = exports.IMGUPLOAD_API = exports.DELETEHOMEWORK_API = exports.UPDATEHOMEWORKBYID_API = exports.HOMEWORKBYID_API = exports.SHOWBADGEHOMEWORK_API = exports.HOMEWORKLIST_API = exports.HOMEWORK_API = exports.DELETEINFORMATION_API = exports.UPDATEINFORMATIONBYID_API = exports.INFORMATIONBYID_API = exports.SHOWBADGE_API = exports.NOTICELIST_API = exports.NOTICEINFORMATION_API = exports.GRADECLASSNAME_API = exports.GRADECLASS_API = exports.PERSONALDETAILS_API = exports.PEOPLE_API = exports.GRADE_API = exports.PERSONALINFORMATIONSCHOOL_API = exports.PERSONALINFORMATIONFAMILY_API = exports.UPDATEPASSWORD_API = exports.LOGIN_API = exports.BASIC_API = void 0; //访问端口
+var BASIC_API = "http://localhost:8081/";
+
+//登录
+exports.BASIC_API = BASIC_API;var LOGIN_API = "http://localhost:8081/user/signIn";
+
+// 修改密码
+exports.LOGIN_API = LOGIN_API;var UPDATEPASSWORD_API = "http://localhost:8081/user/updatePassword";
+
+// 个人信息 家长
+exports.UPDATEPASSWORD_API = UPDATEPASSWORD_API;var PERSONALINFORMATIONFAMILY_API = "http://localhost:8081/user/personalInformationFamily";
+
+// 个人信息 学校
+exports.PERSONALINFORMATIONFAMILY_API = PERSONALINFORMATIONFAMILY_API;var PERSONALINFORMATIONSCHOOL_API = "http://localhost:8081/user/personalInformationSchool";
+
+// 根据账号查询班级
+exports.PERSONALINFORMATIONSCHOOL_API = PERSONALINFORMATIONSCHOOL_API;var GRADE_API = "http://localhost:8081/userGrade/userClass";
+
+// 根据班级 id 查询该班级所有的学生和教师
+exports.GRADE_API = GRADE_API;var PEOPLE_API = "http://localhost:8081/userGrade/userTeacher";
+
+// 根据账号查询个人信息详情
+exports.PEOPLE_API = PEOPLE_API;var PERSONALDETAILS_API = "http://localhost:8081/user/familyPersonalDetails";
+
+//根据班级与年级名称查询班级与年级的 id
+exports.PERSONALDETAILS_API = PERSONALDETAILS_API;var GRADECLASS_API = "http://localhost:8081/grade/gradeClassId";
+
+// 根据班级与年级id查询班级与年级名称
+exports.GRADECLASS_API = GRADECLASS_API;var GRADECLASSNAME_API = "http://localhost:8081/grade/gradeClassName";
+
+// 发布通知信息
+exports.GRADECLASSNAME_API = GRADECLASSNAME_API;var NOTICEINFORMATION_API = "http://localhost:8081/noticeInformation/schoolNoticeInformationRelease";
+
+//根据班级与年级 id 查询发布的信息列表
+exports.NOTICEINFORMATION_API = NOTICEINFORMATION_API;var NOTICELIST_API = "http://localhost:8081/noticeInformation/noticeFamilyDetails";
+
+// 修改数据库里的 showBadge 属性
+exports.NOTICELIST_API = NOTICELIST_API;var SHOWBADGE_API = "http://localhost:8081/noticeInformation/updateShowBadge";
+
+// 根据 id 获取通知信息
+exports.SHOWBADGE_API = SHOWBADGE_API;var INFORMATIONBYID_API = "http://localhost:8081/noticeInformation/informationById";
+
+// 根据 id 修改通知信息
+exports.INFORMATIONBYID_API = INFORMATIONBYID_API;var UPDATEINFORMATIONBYID_API = "http://localhost:8081/noticeInformation/updateInformation";
+
+//根据 id 删除通知记录
+exports.UPDATEINFORMATIONBYID_API = UPDATEINFORMATIONBYID_API;var DELETEINFORMATION_API = "http://localhost:8081/noticeInformation/noticeSchool";
+
+// 发布作业信息
+exports.DELETEINFORMATION_API = DELETEINFORMATION_API;var HOMEWORK_API = "http://localhost:8081/userHomework/homeworkSchoolRelease";
+
+//根据班级与年级 id 查询发布的作业信息列表
+exports.HOMEWORK_API = HOMEWORK_API;var HOMEWORKLIST_API = "http://localhost:8081/userHomework/homeworkFamily";
+
+// 修改数据库里的 showBadge 属性
+exports.HOMEWORKLIST_API = HOMEWORKLIST_API;var SHOWBADGEHOMEWORK_API = "http://localhost:8081/userHomework/updateHomeworkShowBadge";
+
+// 根据 id 获取作业信息
+exports.SHOWBADGEHOMEWORK_API = SHOWBADGEHOMEWORK_API;var HOMEWORKBYID_API = "http://localhost:8081/userHomework/homeworkById";
+
+// 根据 id 修改作业信息
+exports.HOMEWORKBYID_API = HOMEWORKBYID_API;var UPDATEHOMEWORKBYID_API = "http://localhost:8081/userHomework/updateHomework";
+
+//根据 id 删除作业记录
+exports.UPDATEHOMEWORKBYID_API = UPDATEHOMEWORKBYID_API;var DELETEHOMEWORK_API = "http://localhost:8081/userHomework/homeworkSchoolDetails";
+
+// 图片上传接口
+exports.DELETEHOMEWORK_API = DELETEHOMEWORK_API;var IMGUPLOAD_API = "http://localhost:8081/growRecord/imgUpload";
+
+// 上传图片到数据库
+exports.IMGUPLOAD_API = IMGUPLOAD_API;var SAVEIMG_API = "http://localhost:8081/growRecord/saveImg";
+
+// 根据 gradeclass_id 获取成长记录
+exports.SAVEIMG_API = SAVEIMG_API;var RECORDINFORMATION_API = "http://localhost:8081/growRecord/recordInformation";
+
+// 根据 gradeclass_id 与 描述 修改成长记录
+exports.RECORDINFORMATION_API = RECORDINFORMATION_API;var UPDATERECORD_API = "http://localhost:8081/growRecord/updateRecord";
+
+// 根据 id 删除成长记录
+exports.UPDATERECORD_API = UPDATERECORD_API;var DELETERECORD_API = "http://localhost:8081/growRecord/deleteRecord";
+
+// 添加头像
+exports.DELETERECORD_API = DELETERECORD_API;var INSERTURL_API = "http://localhost:8081/picture/insertUrl";
+
+// 查询头像
+exports.INSERTURL_API = INSERTURL_API;var SELECTURL_API = "http://localhost:8081/picture/selectUrl";
+
+// 修改头像
+exports.SELECTURL_API = SELECTURL_API;var UPDATEURL_API = "http://localhost:8081/picture/updateUrl";
+
+// 添加成绩
+exports.UPDATEURL_API = UPDATEURL_API;var INSERTSCORE_API = "http://localhost:8081/score/insertScore";
+
+// 根据班级与年级 gradeclass_id 与科目 查询该班级该科目近五次考试的考试名称
+exports.INSERTSCORE_API = INSERTSCORE_API;var SELECTSCORENAME_API = "http://localhost:8081/score/seclectScoreName";
+
+// 根据班级与年级 gradeclass_id 、科目、考试名称 查询该班级所有学生的考试成绩
+exports.SELECTSCORENAME_API = SELECTSCORENAME_API;var SELECTSTUDENTSCORE_API = "http://localhost:8081/score/selectStudentScore";
+
+// 根据班级与年级 gradeclass_id 、科目、考试名称 删除该班级所有学生的考试成绩
+exports.SELECTSTUDENTSCORE_API = SELECTSTUDENTSCORE_API;var DELETESCORE_API = "http://localhost:8081/score/deleteScore";
+
+// 根据班级与年级 gradeclass_id 、科目、考试名称 修改该班级所有学生的考试信息
+exports.DELETESCORE_API = DELETESCORE_API;var UPDATESCORE_API = "http://localhost:8081/score/updateScore";exports.UPDATESCORE_API = UPDATESCORE_API;
+
+/***/ }),
+
+/***/ 21:
+/*!*************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/address/getters.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 210:
+/*!********************************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/uni_modules/uni-icons/components/uni-icons/icons.js ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  "pulldown": "\uE588",
+  "refreshempty": "\uE461",
+  "back": "\uE471",
+  "forward": "\uE470",
+  "more": "\uE507",
+  "more-filled": "\uE537",
+  "scan": "\uE612",
+  "qq": "\uE264",
+  "weibo": "\uE260",
+  "weixin": "\uE261",
+  "pengyouquan": "\uE262",
+  "loop": "\uE565",
+  "refresh": "\uE407",
+  "refresh-filled": "\uE437",
+  "arrowthindown": "\uE585",
+  "arrowthinleft": "\uE586",
+  "arrowthinright": "\uE587",
+  "arrowthinup": "\uE584",
+  "undo-filled": "\uE7D6",
+  "undo": "\uE406",
+  "redo": "\uE405",
+  "redo-filled": "\uE7D9",
+  "bars": "\uE563",
+  "chatboxes": "\uE203",
+  "camera": "\uE301",
+  "chatboxes-filled": "\uE233",
+  "camera-filled": "\uE7EF",
+  "cart-filled": "\uE7F4",
+  "cart": "\uE7F5",
+  "checkbox-filled": "\uE442",
+  "checkbox": "\uE7FA",
+  "arrowleft": "\uE582",
+  "arrowdown": "\uE581",
+  "arrowright": "\uE583",
+  "smallcircle-filled": "\uE801",
+  "arrowup": "\uE580",
+  "circle": "\uE411",
+  "eye-filled": "\uE568",
+  "eye-slash-filled": "\uE822",
+  "eye-slash": "\uE823",
+  "eye": "\uE824",
+  "flag-filled": "\uE825",
+  "flag": "\uE508",
+  "gear-filled": "\uE532",
+  "reload": "\uE462",
+  "gear": "\uE502",
+  "hand-thumbsdown-filled": "\uE83B",
+  "hand-thumbsdown": "\uE83C",
+  "hand-thumbsup-filled": "\uE83D",
+  "heart-filled": "\uE83E",
+  "hand-thumbsup": "\uE83F",
+  "heart": "\uE840",
+  "home": "\uE500",
+  "info": "\uE504",
+  "home-filled": "\uE530",
+  "info-filled": "\uE534",
+  "circle-filled": "\uE441",
+  "chat-filled": "\uE847",
+  "chat": "\uE263",
+  "mail-open-filled": "\uE84D",
+  "email-filled": "\uE231",
+  "mail-open": "\uE84E",
+  "email": "\uE201",
+  "checkmarkempty": "\uE472",
+  "list": "\uE562",
+  "locked-filled": "\uE856",
+  "locked": "\uE506",
+  "map-filled": "\uE85C",
+  "map-pin": "\uE85E",
+  "map-pin-ellipse": "\uE864",
+  "map": "\uE364",
+  "minus-filled": "\uE440",
+  "mic-filled": "\uE332",
+  "minus": "\uE410",
+  "micoff": "\uE360",
+  "mic": "\uE302",
+  "clear": "\uE434",
+  "smallcircle": "\uE868",
+  "close": "\uE404",
+  "closeempty": "\uE460",
+  "paperclip": "\uE567",
+  "paperplane": "\uE503",
+  "paperplane-filled": "\uE86E",
+  "person-filled": "\uE131",
+  "contact-filled": "\uE130",
+  "person": "\uE101",
+  "contact": "\uE100",
+  "images-filled": "\uE87A",
+  "phone": "\uE200",
+  "images": "\uE87B",
+  "image": "\uE363",
+  "image-filled": "\uE877",
+  "location-filled": "\uE333",
+  "location": "\uE303",
+  "plus-filled": "\uE439",
+  "plus": "\uE409",
+  "plusempty": "\uE468",
+  "help-filled": "\uE535",
+  "help": "\uE505",
+  "navigate-filled": "\uE884",
+  "navigate": "\uE501",
+  "mic-slash-filled": "\uE892",
+  "search": "\uE466",
+  "settings": "\uE560",
+  "sound": "\uE590",
+  "sound-filled": "\uE8A1",
+  "spinner-cycle": "\uE465",
+  "download-filled": "\uE8A4",
+  "personadd-filled": "\uE132",
+  "videocam-filled": "\uE8AF",
+  "personadd": "\uE102",
+  "upload": "\uE402",
+  "upload-filled": "\uE8B1",
+  "starhalf": "\uE463",
+  "star-filled": "\uE438",
+  "star": "\uE408",
+  "trash": "\uE401",
+  "phone-filled": "\uE230",
+  "compose": "\uE400",
+  "videocam": "\uE300",
+  "trash-filled": "\uE8DC",
+  "download": "\uE403",
+  "chatbubble-filled": "\uE232",
+  "chatbubble": "\uE202",
+  "cloud-download": "\uE8E4",
+  "cloud-upload-filled": "\uE8E5",
+  "cloud-upload": "\uE8E6",
+  "cloud-download-filled": "\uE8E9",
+  "headphones": "\uE8BF",
+  "shop": "\uE609" };exports.default = _default;
+
+/***/ }),
+
+/***/ 22:
+/*!***********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/address/index.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _getters = _interopRequireDefault(__webpack_require__(/*! ./getters */ 21));
+var _actions = _interopRequireDefault(__webpack_require__(/*! ./actions */ 15));
+var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  account: "",
+  password: "",
+  name: "" };var _default =
+
+
+
+{
+  namespaced: true,
+  state: state,
+  getters: _getters.default,
+  actions: _actions.default,
+  mutations: _mutations.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 23:
+/*!***************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/address/mutations.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 232:
+/*!********************************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/uni_modules/uni-popup/components/uni-popup/popup.js ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 233));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+// 定义 type 类型:弹出类型：top/bottom/center
+var config = {
+  // 顶部弹出
+  top: 'top',
+  // 底部弹出
+  bottom: 'bottom',
+  // 居中弹出
+  center: 'center',
+  // 消息提示
+  message: 'top',
+  // 对话框
+  dialog: 'center',
+  // 分享
+  share: 'bottom' };var _default =
+
+
+{
+  data: function data() {
+    return {
+      config: config,
+      popupWidth: 0,
+      popupHeight: 0 };
+
+  },
+  mixins: [_message.default],
+  computed: {
+    isDesktop: function isDesktop() {
+      return this.popupWidth >= 500 && this.popupHeight >= 500;
+    } },
+
+  mounted: function mounted() {var _this = this;
+    var fixSize = function fixSize() {var _uni$getSystemInfoSyn =
+
+
+
+
+      uni.getSystemInfoSync(),windowWidth = _uni$getSystemInfoSyn.windowWidth,windowHeight = _uni$getSystemInfoSyn.windowHeight,windowTop = _uni$getSystemInfoSyn.windowTop;
+      _this.popupWidth = windowWidth;
+      _this.popupHeight = windowHeight + windowTop;
+    };
+    fixSize();
+
+
+
+
+
+
+  } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 233:
+/*!**********************************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/uni_modules/uni-popup/components/uni-popup/message.js ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  created: function created() {
+    if (this.type === 'message') {
+      // 不显示遮罩
+      this.maskShow = false;
+      // 获取子组件对象
+      this.childrenMsg = null;
+    }
+  },
+  methods: {
+    customOpen: function customOpen() {
+      if (this.childrenMsg) {
+        this.childrenMsg.open();
+      }
+    },
+    customClose: function customClose() {
+      if (this.childrenMsg) {
+        this.childrenMsg.close();
+      }
+    } } };exports.default = _default;
+
+/***/ }),
+
+/***/ 24:
+/*!***********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/grade/actions.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = _interopRequireDefault(__webpack_require__(/*! ../../../utils/request.js */ 19));
+var config = _interopRequireWildcard(__webpack_require__(/*! ../../../common/config.js */ 20));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+var actions = {
+
+  // 添加成绩
+  insertScore: function insertScore(_ref, data) {var commit = _ref.commit,state = _ref.state;
+    return new Promise( /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(resolve, reject) {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _request.default.requestToken(config.INSERTSCORE_API, data));case 2:res = _context.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context.stop();}}}, _callee);}));return function (_x, _x2) {return _ref2.apply(this, arguments);};}());
+
+  },
+
+  // 根据班级与年级 gradeclass_id 与科目 查询该班级该科目近五次考试的考试名称
+  seclectScoreName: function seclectScoreName(_ref3, data) {var commit = _ref3.commit,state = _ref3.state;
+    return new Promise( /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(resolve, reject) {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _request.default.requestToken(config.SELECTSCORENAME_API, data));case 2:res = _context2.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context2.stop();}}}, _callee2);}));return function (_x3, _x4) {return _ref4.apply(this, arguments);};}());
+
+  },
+
+  // 根据班级与年级 gradeclass_id 、科目、考试名称 查询该班级所有学生的考试成绩
+  selectStudentScore: function selectStudentScore(_ref5, data) {var commit = _ref5.commit,state = _ref5.state;
+    return new Promise( /*#__PURE__*/function () {var _ref6 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(resolve, reject) {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                  _request.default.requestToken(config.SELECTSTUDENTSCORE_API, data));case 2:res = _context3.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context3.stop();}}}, _callee3);}));return function (_x5, _x6) {return _ref6.apply(this, arguments);};}());
+
+  },
+
+  // 根据班级与年级 gradeclass_id 、科目、考试名称 删除该班级所有学生的考试成绩
+  deleteScore: function deleteScore(_ref7, data) {var commit = _ref7.commit,state = _ref7.state;
+    return new Promise( /*#__PURE__*/function () {var _ref8 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(resolve, reject) {var res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                  _request.default.requestToken(config.DELETESCORE_API, data));case 2:res = _context4.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context4.stop();}}}, _callee4);}));return function (_x7, _x8) {return _ref8.apply(this, arguments);};}());
+
+  },
+
+  // 根据班级与年级 gradeclass_id 、科目、考试名称 修改该班级所有学生的考试信息
+  updateScore: function updateScore(_ref9, data) {var commit = _ref9.commit,state = _ref9.state;
+    return new Promise( /*#__PURE__*/function () {var _ref10 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(resolve, reject) {var res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
+                  _request.default.requestToken(config.UPDATESCORE_API, data));case 2:res = _context5.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context5.stop();}}}, _callee5);}));return function (_x9, _x10) {return _ref10.apply(this, arguments);};}());
+
+  } };var _default =
+
+
+actions;exports.default = _default;
+
+/***/ }),
+
+/***/ 25:
+/*!***********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/grade/getters.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 26:
+/*!*********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/grade/index.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _getters = _interopRequireDefault(__webpack_require__(/*! ./getters */ 25));
+var _actions = _interopRequireDefault(__webpack_require__(/*! ./actions */ 24));
+var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 27));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  account: "",
+  password: "",
+  name: "" };var _default =
+
+
+
+{
+  namespaced: true,
+  state: state,
+  getters: _getters.default,
+  actions: _actions.default,
+  mutations: _mutations.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 27:
+/*!*************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/grade/mutations.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 28:
+/*!****************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/growRecord/actions.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = _interopRequireDefault(__webpack_require__(/*! ../../../utils/request.js */ 19));
+var config = _interopRequireWildcard(__webpack_require__(/*! ../../../common/config.js */ 20));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+var actions = {
+
+  //保存图片到数据库
+  saveImg: function saveImg(_ref, data) {var commit = _ref.commit,state = _ref.state;
+    return new Promise( /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(resolve, reject) {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _request.default.requestToken(config.SAVEIMG_API, data));case 2:res = _context.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context.stop();}}}, _callee);}));return function (_x, _x2) {return _ref2.apply(this, arguments);};}());
+
+  },
+
+  // 根据 gradeclass_id 获取成长记录
+  recordInformation: function recordInformation(_ref3, data) {var commit = _ref3.commit,state = _ref3.state;
+    return new Promise( /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(resolve, reject) {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _request.default.requestToken(config.RECORDINFORMATION_API, data));case 2:res = _context2.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context2.stop();}}}, _callee2);}));return function (_x3, _x4) {return _ref4.apply(this, arguments);};}());
+
+  },
+
+  // 根据 gradeclass_id 与 描述 修改成长记录
+  updateRecord: function updateRecord(_ref5, data) {var commit = _ref5.commit,state = _ref5.state;
+    return new Promise( /*#__PURE__*/function () {var _ref6 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(resolve, reject) {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                  _request.default.requestToken(config.UPDATERECORD_API, data));case 2:res = _context3.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context3.stop();}}}, _callee3);}));return function (_x5, _x6) {return _ref6.apply(this, arguments);};}());
+
+  },
+
+  // 根据 id 删除成长记录
+  deleteRecord: function deleteRecord(_ref7, data) {var commit = _ref7.commit,state = _ref7.state;
+    return new Promise( /*#__PURE__*/function () {var _ref8 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(resolve, reject) {var res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                  _request.default.requestToken(config.DELETERECORD_API, data));case 2:res = _context4.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context4.stop();}}}, _callee4);}));return function (_x7, _x8) {return _ref8.apply(this, arguments);};}());
+
+  } };var _default =
+
+
+actions;exports.default = _default;
+
+/***/ }),
+
+/***/ 29:
+/*!****************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/growRecord/getters.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ 3:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -9577,6 +10929,285 @@ module.exports = g;
 
 /***/ }),
 
+/***/ 30:
+/*!**************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/growRecord/index.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _getters = _interopRequireDefault(__webpack_require__(/*! ./getters */ 29));
+var _actions = _interopRequireDefault(__webpack_require__(/*! ./actions */ 28));
+var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 31));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  account: "",
+  password: "",
+  name: "" };var _default =
+
+
+
+{
+  namespaced: true,
+  state: state,
+  getters: _getters.default,
+  actions: _actions.default,
+  mutations: _mutations.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 31:
+/*!******************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/growRecord/mutations.js ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 32:
+/*!**************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/homework/actions.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = _interopRequireDefault(__webpack_require__(/*! ../../../utils/request.js */ 19));
+var config = _interopRequireWildcard(__webpack_require__(/*! ../../../common/config.js */ 20));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+var actions = {
+
+  //发布作业信息
+  homework: function homework(_ref, data) {var commit = _ref.commit,state = _ref.state;
+    return new Promise( /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(resolve, reject) {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _request.default.requestToken(config.HOMEWORK_API, data));case 2:res = _context.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context.stop();}}}, _callee);}));return function (_x, _x2) {return _ref2.apply(this, arguments);};}());
+
+  },
+
+  //根据班级与年级 id 查询发布的信息列表
+  homeworkList: function homeworkList(_ref3, data) {var commit = _ref3.commit,state = _ref3.state;
+    return new Promise( /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(resolve, reject) {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _request.default.requestToken(config.HOMEWORKLIST_API, data));case 2:res = _context2.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context2.stop();}}}, _callee2);}));return function (_x3, _x4) {return _ref4.apply(this, arguments);};}());
+
+  },
+
+  // 修改数据库里的 showBadge 属性
+  updateShowBadge: function updateShowBadge(_ref5, data) {var commit = _ref5.commit,state = _ref5.state;
+    return new Promise( /*#__PURE__*/function () {var _ref6 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(resolve, reject) {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                  _request.default.requestToken(config.SHOWBADGEHOMEWORK_API, data));case 2:res = _context3.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context3.stop();}}}, _callee3);}));return function (_x5, _x6) {return _ref6.apply(this, arguments);};}());
+
+  },
+
+  // 根据 id 获取作业信息
+  homeworkById: function homeworkById(_ref7, data) {var commit = _ref7.commit,state = _ref7.state;
+    return new Promise( /*#__PURE__*/function () {var _ref8 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(resolve, reject) {var res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                  _request.default.requestToken(config.HOMEWORKBYID_API, data));case 2:res = _context4.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context4.stop();}}}, _callee4);}));return function (_x7, _x8) {return _ref8.apply(this, arguments);};}());
+
+  },
+
+  // 根据 id 修改作业信息
+  updatehomeworkById: function updatehomeworkById(_ref9, data) {var commit = _ref9.commit,state = _ref9.state;
+    return new Promise( /*#__PURE__*/function () {var _ref10 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(resolve, reject) {var res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
+                  _request.default.requestToken(config.UPDATEHOMEWORKBYID_API, data));case 2:res = _context5.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context5.stop();}}}, _callee5);}));return function (_x9, _x10) {return _ref10.apply(this, arguments);};}());
+
+  },
+
+  //根据 id 删除作业记录
+  deletehomework: function deletehomework(_ref11, data) {var commit = _ref11.commit,state = _ref11.state;
+    return new Promise( /*#__PURE__*/function () {var _ref12 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6(resolve, reject) {var res;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:_context6.next = 2;return (
+                  _request.default.requestToken(config.DELETEHOMEWORK_API, data));case 2:res = _context6.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context6.stop();}}}, _callee6);}));return function (_x11, _x12) {return _ref12.apply(this, arguments);};}());
+
+  } };var _default =
+
+
+actions;exports.default = _default;
+
+/***/ }),
+
+/***/ 33:
+/*!**************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/homework/getters.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 34:
+/*!************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/homework/index.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _getters = _interopRequireDefault(__webpack_require__(/*! ./getters */ 33));
+var _actions = _interopRequireDefault(__webpack_require__(/*! ./actions */ 32));
+var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 35));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  account: "",
+  password: "",
+  name: "" };var _default =
+
+
+
+{
+  namespaced: true,
+  state: state,
+  getters: _getters.default,
+  actions: _actions.default,
+  mutations: _mutations.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 35:
+/*!****************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/homework/mutations.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 36:
+/*!***********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/index/actions.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = _interopRequireDefault(__webpack_require__(/*! ../../../utils/request.js */ 19));
+var config = _interopRequireWildcard(__webpack_require__(/*! ../../../common/config.js */ 20));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+var actions = {
+
+  // 根据班级与年级名称查询班级与年级的 id
+  gradeClassId: function gradeClassId(_ref, data) {var commit = _ref.commit,state = _ref.state;
+    return new Promise( /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(resolve, reject) {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _request.default.requestToken(config.GRADECLASS_API, data));case 2:res = _context.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context.stop();}}}, _callee);}));return function (_x, _x2) {return _ref2.apply(this, arguments);};}());
+
+  },
+
+  // 根据班级与年级id查询年级与班级名称
+  gradeClassName: function gradeClassName(_ref3, data) {var commit = _ref3.commit,state = _ref3.state;
+    return new Promise( /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(resolve, reject) {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _request.default.requestToken(config.GRADECLASSNAME_API, data));case 2:res = _context2.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context2.stop();}}}, _callee2);}));return function (_x3, _x4) {return _ref4.apply(this, arguments);};}());
+
+  } };var _default =
+
+
+actions;exports.default = _default;
+
+/***/ }),
+
+/***/ 37:
+/*!***********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/index/getters.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 38:
+/*!*********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/index/index.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _getters = _interopRequireDefault(__webpack_require__(/*! ./getters */ 37));
+var _actions = _interopRequireDefault(__webpack_require__(/*! ./actions */ 36));
+var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 39));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  account: "",
+  password: "",
+  name: "" };var _default =
+
+
+
+{
+  namespaced: true,
+  state: state,
+  getters: _getters.default,
+  actions: _actions.default,
+  mutations: _mutations.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 39:
+/*!*************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/index/mutations.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ 4:
 /*!***************************************************************!*\
   !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/pages.json ***!
@@ -9585,6 +11216,1651 @@ module.exports = g;
 /***/ (function(module, exports) {
 
 
+
+/***/ }),
+
+/***/ 40:
+/*!***********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/login/actions.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = _interopRequireDefault(__webpack_require__(/*! ../../../utils/request.js */ 19));
+var config = _interopRequireWildcard(__webpack_require__(/*! ../../../common/config.js */ 20));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+var actions = {
+
+  //登录
+  signIn: function signIn(_ref, data) {var commit = _ref.commit,state = _ref.state;
+    return new Promise( /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(resolve, reject) {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _request.default.requestNoToken(config.LOGIN_API, data));case 2:res = _context.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context.stop();}}}, _callee);}));return function (_x, _x2) {return _ref2.apply(this, arguments);};}());
+
+  } };var _default =
+
+
+actions;exports.default = _default;
+
+/***/ }),
+
+/***/ 41:
+/*!***********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/login/getters.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 42:
+/*!*********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/login/index.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _getters = _interopRequireDefault(__webpack_require__(/*! ./getters */ 41));
+var _actions = _interopRequireDefault(__webpack_require__(/*! ./actions */ 40));
+var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 43));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  account: "",
+  password: "",
+  name: "" };var _default =
+
+
+
+{
+  namespaced: true,
+  state: state,
+  getters: _getters.default,
+  actions: _actions.default,
+  mutations: _mutations.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 43:
+/*!*************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/login/mutations.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 44:
+/*!************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/notice/actions.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = _interopRequireDefault(__webpack_require__(/*! ../../../utils/request.js */ 19));
+var config = _interopRequireWildcard(__webpack_require__(/*! ../../../common/config.js */ 20));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+var actions = {
+
+  //发布通知信息
+  noticeInformation: function noticeInformation(_ref, data) {var commit = _ref.commit,state = _ref.state;
+    return new Promise( /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(resolve, reject) {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _request.default.requestToken(config.NOTICEINFORMATION_API, data));case 2:res = _context.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context.stop();}}}, _callee);}));return function (_x, _x2) {return _ref2.apply(this, arguments);};}());
+
+  },
+
+  //根据班级与年级 id 查询发布的信息列表
+  noticeList: function noticeList(_ref3, data) {var commit = _ref3.commit,state = _ref3.state;
+    return new Promise( /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(resolve, reject) {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _request.default.requestToken(config.NOTICELIST_API, data));case 2:res = _context2.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context2.stop();}}}, _callee2);}));return function (_x3, _x4) {return _ref4.apply(this, arguments);};}());
+
+  },
+
+  // 修改数据库里的 showBadge 属性
+  updateShowBadge: function updateShowBadge(_ref5, data) {var commit = _ref5.commit,state = _ref5.state;
+    return new Promise( /*#__PURE__*/function () {var _ref6 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(resolve, reject) {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                  _request.default.requestToken(config.SHOWBADGE_API, data));case 2:res = _context3.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context3.stop();}}}, _callee3);}));return function (_x5, _x6) {return _ref6.apply(this, arguments);};}());
+
+  },
+
+  // 根据 id 获取通知信息
+  informationById: function informationById(_ref7, data) {var commit = _ref7.commit,state = _ref7.state;
+    return new Promise( /*#__PURE__*/function () {var _ref8 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(resolve, reject) {var res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                  _request.default.requestToken(config.INFORMATIONBYID_API, data));case 2:res = _context4.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context4.stop();}}}, _callee4);}));return function (_x7, _x8) {return _ref8.apply(this, arguments);};}());
+
+  },
+
+  // 根据 id 修改通知信息
+  updateInformationById: function updateInformationById(_ref9, data) {var commit = _ref9.commit,state = _ref9.state;
+    return new Promise( /*#__PURE__*/function () {var _ref10 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(resolve, reject) {var res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
+                  _request.default.requestToken(config.UPDATEINFORMATIONBYID_API, data));case 2:res = _context5.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context5.stop();}}}, _callee5);}));return function (_x9, _x10) {return _ref10.apply(this, arguments);};}());
+
+  },
+
+  //根据 id 删除通知记录
+  deleteInformation: function deleteInformation(_ref11, data) {var commit = _ref11.commit,state = _ref11.state;
+    return new Promise( /*#__PURE__*/function () {var _ref12 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6(resolve, reject) {var res;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:_context6.next = 2;return (
+                  _request.default.requestToken(config.DELETEINFORMATION_API, data));case 2:res = _context6.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context6.stop();}}}, _callee6);}));return function (_x11, _x12) {return _ref12.apply(this, arguments);};}());
+
+  } };var _default =
+
+
+actions;exports.default = _default;
+
+/***/ }),
+
+/***/ 45:
+/*!************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/notice/getters.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 46:
+/*!**********************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/notice/index.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _getters = _interopRequireDefault(__webpack_require__(/*! ./getters */ 45));
+var _actions = _interopRequireDefault(__webpack_require__(/*! ./actions */ 44));
+var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 47));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  account: "",
+  password: "",
+  name: "" };var _default =
+
+
+
+{
+  namespaced: true,
+  state: state,
+  getters: _getters.default,
+  actions: _actions.default,
+  mutations: _mutations.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 47:
+/*!**************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/notice/mutations.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 48:
+/*!*************************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/personalInformation/actions.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = _interopRequireDefault(__webpack_require__(/*! ../../../utils/request.js */ 19));
+var config = _interopRequireWildcard(__webpack_require__(/*! ../../../common/config.js */ 20));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+var actions = {
+
+  //个人信息 家长
+  informationFamily: function informationFamily(_ref, data) {var commit = _ref.commit,state = _ref.state;
+    return new Promise( /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(resolve, reject) {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _request.default.requestToken(config.PERSONALINFORMATIONFAMILY_API, data));case 2:res = _context.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context.stop();}}}, _callee);}));return function (_x, _x2) {return _ref2.apply(this, arguments);};}());
+
+  },
+
+  // 个人信息 学校
+  informationSchool: function informationSchool(_ref3, data) {var commit = _ref3.commit,state = _ref3.state;
+    return new Promise( /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(resolve, reject) {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _request.default.requestToken(config.PERSONALINFORMATIONSCHOOL_API, data));case 2:res = _context2.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context2.stop();}}}, _callee2);}));return function (_x3, _x4) {return _ref4.apply(this, arguments);};}());
+
+  },
+
+  // 添加头像
+  insertUrl: function insertUrl(_ref5, data) {var commit = _ref5.commit,state = _ref5.state;
+    return new Promise( /*#__PURE__*/function () {var _ref6 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(resolve, reject) {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                  _request.default.requestToken(config.INSERTURL_API, data));case 2:res = _context3.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context3.stop();}}}, _callee3);}));return function (_x5, _x6) {return _ref6.apply(this, arguments);};}());
+
+  },
+
+  // 查询头像
+  selectUrl: function selectUrl(_ref7, data) {var commit = _ref7.commit,state = _ref7.state;
+    return new Promise( /*#__PURE__*/function () {var _ref8 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(resolve, reject) {var res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                  _request.default.requestToken(config.SELECTURL_API, data));case 2:res = _context4.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context4.stop();}}}, _callee4);}));return function (_x7, _x8) {return _ref8.apply(this, arguments);};}());
+
+  },
+
+  // 修改头像
+  updateUrl: function updateUrl(_ref9, data) {var commit = _ref9.commit,state = _ref9.state;
+    return new Promise( /*#__PURE__*/function () {var _ref10 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(resolve, reject) {var res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
+                  _request.default.requestToken(config.UPDATEURL_API, data));case 2:res = _context5.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context5.stop();}}}, _callee5);}));return function (_x9, _x10) {return _ref10.apply(this, arguments);};}());
+
+  } };var _default =
+
+
+actions;exports.default = _default;
+
+/***/ }),
+
+/***/ 49:
+/*!*************************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/personalInformation/getters.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 50:
+/*!***********************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/personalInformation/index.js ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _getters = _interopRequireDefault(__webpack_require__(/*! ./getters */ 49));
+var _actions = _interopRequireDefault(__webpack_require__(/*! ./actions */ 48));
+var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 51));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  account: "",
+  password: "",
+  name: "" };var _default =
+
+
+
+{
+  namespaced: true,
+  state: state,
+  getters: _getters.default,
+  actions: _actions.default,
+  mutations: _mutations.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 51:
+/*!***************************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/personalInformation/mutations.js ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 52:
+/*!********************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/updatePassword/actions.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _request = _interopRequireDefault(__webpack_require__(/*! ../../../utils/request.js */ 19));
+var config = _interopRequireWildcard(__webpack_require__(/*! ../../../common/config.js */ 20));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+var actions = {
+
+  //修改密码
+  updatePassword: function updatePassword(_ref, data) {var commit = _ref.commit,state = _ref.state;
+    return new Promise( /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(resolve, reject) {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _request.default.requestToken(config.UPDATEPASSWORD_API, data));case 2:res = _context.sent;
+                if (res.jsonError && res.jsonError.length > 0) {
+                  reject(res.jsonError[0]._exceptionMessage);
+                } else {
+                  resolve(res);
+                  // console.log(res);
+                }case 4:case "end":return _context.stop();}}}, _callee);}));return function (_x, _x2) {return _ref2.apply(this, arguments);};}());
+
+  } };var _default =
+
+
+actions;exports.default = _default;
+
+/***/ }),
+
+/***/ 53:
+/*!********************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/updatePassword/getters.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 54:
+/*!******************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/updatePassword/index.js ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _getters = _interopRequireDefault(__webpack_require__(/*! ./getters */ 53));
+var _actions = _interopRequireDefault(__webpack_require__(/*! ./actions */ 52));
+var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 55));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  account: "",
+  password: "",
+  name: "" };var _default =
+
+
+
+{
+  namespaced: true,
+  state: state,
+  getters: _getters.default,
+  actions: _actions.default,
+  mutations: _mutations.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 55:
+/*!**********************************************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/store/modules/updatePassword/mutations.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 62:
+/*!********************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/utils/string.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.isPhone = isPhone; // 字符串是否为空
+var isNullAndEmpty = function isNullAndEmptys(str) {
+  if (str == "" || str == null || str == undefined) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// 两个字符串是否相同
+var isEqual = function equal(str1, str2) {
+  if (str1 === str2) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/*
+    * 验证手机号是否合格
+    * true--说明合格
+    */
+function isPhone(phoneStr) {
+  var myreg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+  if (!myreg.test(phoneStr)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+module.exports = {
+  isNullAndEmpty: isNullAndEmpty,
+  isEqual: isEqual,
+  isPhone: isPhone };
+
+// public class StringUtil {
+
+//     public StringUtil(){
+
+//     }
+
+//     public static boolean isNullOrEmpty(String str){
+//         return isNull(str) || "".equals(str);
+//     }
+
+//     public static boolean isNull(String str){
+//         return str == null;
+//     }
+
+//     public static boolean equalsNull(String str){
+//         return "null".equals(str);
+//     }
+
+//     public  static boolean isNullOrEmptyOrEmptyNull(String str){
+//         return isNullOrEmpty(str) || equalsNull(str);
+//     }
+//     //是否是数字
+//     public static boolean isNumber(String str){
+//         Pattern pattern = Pattern.compile("[0-9]*");
+//         return pattern.matcher(str).matches();
+//     }
+
+//     //是否是字母
+//     public static boolean isLetter(String str){
+//         Pattern pattern = Pattern.compile("[a-zA-Z]");
+//         return pattern.matcher(str).matches();
+//     }
+
+//     //是否是汉字
+//     public static boolean isChinese(String str){
+//         Pattern pattern = Pattern.compile("[\u4e00-\u9fa5]");
+//         return pattern.matcher(str).matches();
+//     }
+
+//     //是否是数字或字母
+//     public static boolean isNumberOrLetter(String str){
+//         Pattern pattern = Pattern.compile("[a-zA-Z0-9]*");
+//         return pattern.matcher(str).matches();
+//     }
+
+//     //是否是电话号码
+//     public static boolean isPhone(String str){
+//         return isChinaPhoneLegal(str) || isHKPhoneLegal(str);
+//     }
+
+//     /**
+//      * 大陆手机号码11位数，匹配格式：前三位固定格式+后8位任意数
+//      * 此方法中前三位格式有：
+//      * 13+任意数
+//      * 145,147,149
+//      * 15+除4的任意数(不要写^4，这样的话字母也会被认为是正确的)
+//      * 166
+//      * 17+3,5,6,7,8
+//      * 18+任意数
+//      * 198,199
+//      */
+//     public static boolean isChinaPhoneLegal(String str){
+//         // ^ 匹配输入字符串开始的位置
+//         // \d 匹配一个或多个数字，其中 \ 要转义，所以是 \\d
+//         // $ 匹配输入字符串结尾的位置
+
+//         Pattern pattern = Pattern.compile("^((13[0-9])|(14[5,7,9])|(15[0-3,5-9])|(166)|(17[3,5,6,7,8])" +
+//                 "|(18[0-9])|(19[8,9]))\\d{8}$");
+//         return pattern.matcher(str).matches();
+//     }
+
+//     /**
+//      * 香港手机号码8位数，5|6|8|9开头+7位任意数
+//      */
+//     public static boolean isHKPhoneLegal(String str){
+//         // ^ 匹配输入字符串开始的位置
+//         // \d 匹配一个或多个数字，其中 \ 要转义，所以是 \\d
+//         // $ 匹配输入字符串结尾的位置
+
+//         Pattern pattern = Pattern.compile("^(5|6|8|9)\\d{7}$");
+//         return pattern.matcher(str).matches();
+//     }
+
+//     //字符的长度
+
+
+// }
+
+/***/ }),
+
+/***/ 63:
+/*!*****************************************************************!*\
+  !*** /Users/zxl/Documents/yyx/FamilySchoolUni-app/utils/md5.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * [js-md5]{@link https://github.com/emn178/js-md5}
+ *
+ * @namespace md5
+ * @version 0.7.3
+ * @author Chen, Yi-Cyuan [emn178@gmail.com]
+ * @copyright Chen, Yi-Cyuan 2014-2017
+ * @license MIT
+ */
+(function () {
+  'use strict';
+
+  var ERROR = 'input is invalid type';
+  var WINDOW = typeof window === 'object';
+  var root = WINDOW ? window : {};
+  if (root.JS_MD5_NO_WINDOW) {
+    WINDOW = false;
+  }
+  var WEB_WORKER = !WINDOW && typeof self === 'object';
+  var NODE_JS = !root.JS_MD5_NO_NODE_JS && typeof process === 'object' && process.versions && process.versions.node;
+  if (NODE_JS) {
+    root = global;
+  } else if (WEB_WORKER) {
+    root = self;
+  }
+  var COMMON_JS = !root.JS_MD5_NO_COMMON_JS && typeof module === 'object' && module.exports;
+  var AMD =  true && __webpack_require__(/*! !webpack amd options */ 66);
+  var ARRAY_BUFFER = !root.JS_MD5_NO_ARRAY_BUFFER && typeof ArrayBuffer !== 'undefined';
+  var HEX_CHARS = '0123456789abcdef'.split('');
+  var EXTRA = [128, 32768, 8388608, -2147483648];
+  var SHIFT = [0, 8, 16, 24];
+  var OUTPUT_TYPES = ['hex', 'array', 'digest', 'buffer', 'arrayBuffer', 'base64'];
+  var BASE64_ENCODE_CHAR = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('');
+
+  var blocks = [],buffer8;
+  if (ARRAY_BUFFER) {
+    var buffer = new ArrayBuffer(68);
+    buffer8 = new Uint8Array(buffer);
+    blocks = new Uint32Array(buffer);
+  }
+
+  if (root.JS_MD5_NO_NODE_JS || !Array.isArray) {
+    Array.isArray = function (obj) {
+      return Object.prototype.toString.call(obj) === '[object Array]';
+    };
+  }
+
+  if (ARRAY_BUFFER && (root.JS_MD5_NO_ARRAY_BUFFER_IS_VIEW || !ArrayBuffer.isView)) {
+    ArrayBuffer.isView = function (obj) {
+      return typeof obj === 'object' && obj.buffer && obj.buffer.constructor === ArrayBuffer;
+    };
+  }
+
+  /**
+     * @method hex
+     * @memberof md5
+     * @description Output hash as hex string
+     * @param {String|Array|Uint8Array|ArrayBuffer} message message to hash
+     * @returns {String} Hex string
+     * @example
+     * md5.hex('The quick brown fox jumps over the lazy dog');
+     * // equal to
+     * md5('The quick brown fox jumps over the lazy dog');
+     */
+  /**
+         * @method digest
+         * @memberof md5
+         * @description Output hash as bytes array
+         * @param {String|Array|Uint8Array|ArrayBuffer} message message to hash
+         * @returns {Array} Bytes array
+         * @example
+         * md5.digest('The quick brown fox jumps over the lazy dog');
+         */
+  /**
+             * @method array
+             * @memberof md5
+             * @description Output hash as bytes array
+             * @param {String|Array|Uint8Array|ArrayBuffer} message message to hash
+             * @returns {Array} Bytes array
+             * @example
+             * md5.array('The quick brown fox jumps over the lazy dog');
+             */
+  /**
+                 * @method arrayBuffer
+                 * @memberof md5
+                 * @description Output hash as ArrayBuffer
+                 * @param {String|Array|Uint8Array|ArrayBuffer} message message to hash
+                 * @returns {ArrayBuffer} ArrayBuffer
+                 * @example
+                 * md5.arrayBuffer('The quick brown fox jumps over the lazy dog');
+                 */
+  /**
+                     * @method buffer
+                     * @deprecated This maybe confuse with Buffer in node.js. Please use arrayBuffer instead.
+                     * @memberof md5
+                     * @description Output hash as ArrayBuffer
+                     * @param {String|Array|Uint8Array|ArrayBuffer} message message to hash
+                     * @returns {ArrayBuffer} ArrayBuffer
+                     * @example
+                     * md5.buffer('The quick brown fox jumps over the lazy dog');
+                     */
+  /**
+                         * @method base64
+                         * @memberof md5
+                         * @description Output hash as base64 string
+                         * @param {String|Array|Uint8Array|ArrayBuffer} message message to hash
+                         * @returns {String} base64 string
+                         * @example
+                         * md5.base64('The quick brown fox jumps over the lazy dog');
+                         */
+  var createOutputMethod = function createOutputMethod(outputType) {
+    return function (message) {
+      return new Md5(true).update(message)[outputType]();
+    };
+  };
+
+  /**
+      * @method create
+      * @memberof md5
+      * @description Create Md5 object
+      * @returns {Md5} Md5 object.
+      * @example
+      * var hash = md5.create();
+      */
+  /**
+          * @method update
+          * @memberof md5
+          * @description Create and update Md5 object
+          * @param {String|Array|Uint8Array|ArrayBuffer} message message to hash
+          * @returns {Md5} Md5 object.
+          * @example
+          * var hash = md5.update('The quick brown fox jumps over the lazy dog');
+          * // equal to
+          * var hash = md5.create();
+          * hash.update('The quick brown fox jumps over the lazy dog');
+          */
+  var createMethod = function createMethod() {
+    var method = createOutputMethod('hex');
+    if (NODE_JS) {
+      method = nodeWrap(method);
+    }
+    method.create = function () {
+      return new Md5();
+    };
+    method.update = function (message) {
+      return method.create().update(message);
+    };
+    for (var i = 0; i < OUTPUT_TYPES.length; ++i) {
+      var type = OUTPUT_TYPES[i];
+      method[type] = createOutputMethod(type);
+    }
+    return method;
+  };
+
+  var nodeWrap = function nodeWrap(method) {
+    var crypto = eval("require('crypto')");
+    var Buffer = eval("require('buffer').Buffer");
+    var nodeMethod = function nodeMethod(message) {
+      if (typeof message === 'string') {
+        return crypto.createHash('md5').update(message, 'utf8').digest('hex');
+      } else {
+        if (message === null || message === undefined) {
+          throw ERROR;
+        } else if (message.constructor === ArrayBuffer) {
+          message = new Uint8Array(message);
+        }
+      }
+      if (Array.isArray(message) || ArrayBuffer.isView(message) ||
+      message.constructor === Buffer) {
+        return crypto.createHash('md5').update(new Buffer(message)).digest('hex');
+      } else {
+        return method(message);
+      }
+    };
+    return nodeMethod;
+  };
+
+
+
+  /**
+      * Md5 class
+      * @class Md5
+      * @description This is internal class.
+      * @see {@link md5.create}
+      */
+  function Md5(sharedMemory) {
+    if (sharedMemory) {
+      blocks[0] = blocks[16] = blocks[1] = blocks[2] = blocks[3] =
+      blocks[4] = blocks[5] = blocks[6] = blocks[7] =
+      blocks[8] = blocks[9] = blocks[10] = blocks[11] =
+      blocks[12] = blocks[13] = blocks[14] = blocks[15] = 0;
+      this.blocks = blocks;
+      this.buffer8 = buffer8;
+    } else {
+      if (ARRAY_BUFFER) {
+        var buffer = new ArrayBuffer(68);
+        this.buffer8 = new Uint8Array(buffer);
+        this.blocks = new Uint32Array(buffer);
+      } else {
+        this.blocks = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      }
+    }
+    this.h0 = this.h1 = this.h2 = this.h3 = this.start = this.bytes = this.hBytes = 0;
+    this.finalized = this.hashed = false;
+    this.first = true;
+  }
+
+  /**
+     * @method update
+     * @memberof Md5
+     * @instance
+     * @description Update hash
+     * @param {String|Array|Uint8Array|ArrayBuffer} message message to hash
+     * @returns {Md5} Md5 object.
+     * @see {@link md5.update}
+     */
+  Md5.prototype.update = function (message) {
+    if (this.finalized) {
+      return;
+    }
+
+    var notString,type = typeof message;
+    if (type !== 'string') {
+      if (type === 'object') {
+        if (message === null) {
+          throw ERROR;
+        } else if (ARRAY_BUFFER && message.constructor === ArrayBuffer) {
+          message = new Uint8Array(message);
+        } else if (!Array.isArray(message)) {
+          if (!ARRAY_BUFFER || !ArrayBuffer.isView(message)) {
+            throw ERROR;
+          }
+        }
+      } else {
+        throw ERROR;
+      }
+      notString = true;
+    }
+    var code,index = 0,i,length = message.length,blocks = this.blocks;
+    var buffer8 = this.buffer8;
+
+    while (index < length) {
+      if (this.hashed) {
+        this.hashed = false;
+        blocks[0] = blocks[16];
+        blocks[16] = blocks[1] = blocks[2] = blocks[3] =
+        blocks[4] = blocks[5] = blocks[6] = blocks[7] =
+        blocks[8] = blocks[9] = blocks[10] = blocks[11] =
+        blocks[12] = blocks[13] = blocks[14] = blocks[15] = 0;
+      }
+
+      if (notString) {
+        if (ARRAY_BUFFER) {
+          for (i = this.start; index < length && i < 64; ++index) {
+            buffer8[i++] = message[index];
+          }
+        } else {
+          for (i = this.start; index < length && i < 64; ++index) {
+            blocks[i >> 2] |= message[index] << SHIFT[i++ & 3];
+          }
+        }
+      } else {
+        if (ARRAY_BUFFER) {
+          for (i = this.start; index < length && i < 64; ++index) {
+            code = message.charCodeAt(index);
+            if (code < 0x80) {
+              buffer8[i++] = code;
+            } else if (code < 0x800) {
+              buffer8[i++] = 0xc0 | code >> 6;
+              buffer8[i++] = 0x80 | code & 0x3f;
+            } else if (code < 0xd800 || code >= 0xe000) {
+              buffer8[i++] = 0xe0 | code >> 12;
+              buffer8[i++] = 0x80 | code >> 6 & 0x3f;
+              buffer8[i++] = 0x80 | code & 0x3f;
+            } else {
+              code = 0x10000 + ((code & 0x3ff) << 10 | message.charCodeAt(++index) & 0x3ff);
+              buffer8[i++] = 0xf0 | code >> 18;
+              buffer8[i++] = 0x80 | code >> 12 & 0x3f;
+              buffer8[i++] = 0x80 | code >> 6 & 0x3f;
+              buffer8[i++] = 0x80 | code & 0x3f;
+            }
+          }
+        } else {
+          for (i = this.start; index < length && i < 64; ++index) {
+            code = message.charCodeAt(index);
+            if (code < 0x80) {
+              blocks[i >> 2] |= code << SHIFT[i++ & 3];
+            } else if (code < 0x800) {
+              blocks[i >> 2] |= (0xc0 | code >> 6) << SHIFT[i++ & 3];
+              blocks[i >> 2] |= (0x80 | code & 0x3f) << SHIFT[i++ & 3];
+            } else if (code < 0xd800 || code >= 0xe000) {
+              blocks[i >> 2] |= (0xe0 | code >> 12) << SHIFT[i++ & 3];
+              blocks[i >> 2] |= (0x80 | code >> 6 & 0x3f) << SHIFT[i++ & 3];
+              blocks[i >> 2] |= (0x80 | code & 0x3f) << SHIFT[i++ & 3];
+            } else {
+              code = 0x10000 + ((code & 0x3ff) << 10 | message.charCodeAt(++index) & 0x3ff);
+              blocks[i >> 2] |= (0xf0 | code >> 18) << SHIFT[i++ & 3];
+              blocks[i >> 2] |= (0x80 | code >> 12 & 0x3f) << SHIFT[i++ & 3];
+              blocks[i >> 2] |= (0x80 | code >> 6 & 0x3f) << SHIFT[i++ & 3];
+              blocks[i >> 2] |= (0x80 | code & 0x3f) << SHIFT[i++ & 3];
+            }
+          }
+        }
+      }
+      this.lastByteIndex = i;
+      this.bytes += i - this.start;
+      if (i >= 64) {
+        this.start = i - 64;
+        this.hash();
+        this.hashed = true;
+      } else {
+        this.start = i;
+      }
+    }
+    if (this.bytes > 4294967295) {
+      this.hBytes += this.bytes / 4294967296 << 0;
+      this.bytes = this.bytes % 4294967296;
+    }
+    return this;
+  };
+
+  Md5.prototype.finalize = function () {
+    if (this.finalized) {
+      return;
+    }
+    this.finalized = true;
+    var blocks = this.blocks,i = this.lastByteIndex;
+    blocks[i >> 2] |= EXTRA[i & 3];
+    if (i >= 56) {
+      if (!this.hashed) {
+        this.hash();
+      }
+      blocks[0] = blocks[16];
+      blocks[16] = blocks[1] = blocks[2] = blocks[3] =
+      blocks[4] = blocks[5] = blocks[6] = blocks[7] =
+      blocks[8] = blocks[9] = blocks[10] = blocks[11] =
+      blocks[12] = blocks[13] = blocks[14] = blocks[15] = 0;
+    }
+    blocks[14] = this.bytes << 3;
+    blocks[15] = this.hBytes << 3 | this.bytes >>> 29;
+    this.hash();
+  };
+
+  Md5.prototype.hash = function () {
+    var a,b,c,d,bc,da,blocks = this.blocks;
+
+    if (this.first) {
+      a = blocks[0] - 680876937;
+      a = (a << 7 | a >>> 25) - 271733879 << 0;
+      d = (-1732584194 ^ a & 2004318071) + blocks[1] - 117830708;
+      d = (d << 12 | d >>> 20) + a << 0;
+      c = (-271733879 ^ d & (a ^ -271733879)) + blocks[2] - 1126478375;
+      c = (c << 17 | c >>> 15) + d << 0;
+      b = (a ^ c & (d ^ a)) + blocks[3] - 1316259209;
+      b = (b << 22 | b >>> 10) + c << 0;
+    } else {
+      a = this.h0;
+      b = this.h1;
+      c = this.h2;
+      d = this.h3;
+      a += (d ^ b & (c ^ d)) + blocks[0] - 680876936;
+      a = (a << 7 | a >>> 25) + b << 0;
+      d += (c ^ a & (b ^ c)) + blocks[1] - 389564586;
+      d = (d << 12 | d >>> 20) + a << 0;
+      c += (b ^ d & (a ^ b)) + blocks[2] + 606105819;
+      c = (c << 17 | c >>> 15) + d << 0;
+      b += (a ^ c & (d ^ a)) + blocks[3] - 1044525330;
+      b = (b << 22 | b >>> 10) + c << 0;
+    }
+
+    a += (d ^ b & (c ^ d)) + blocks[4] - 176418897;
+    a = (a << 7 | a >>> 25) + b << 0;
+    d += (c ^ a & (b ^ c)) + blocks[5] + 1200080426;
+    d = (d << 12 | d >>> 20) + a << 0;
+    c += (b ^ d & (a ^ b)) + blocks[6] - 1473231341;
+    c = (c << 17 | c >>> 15) + d << 0;
+    b += (a ^ c & (d ^ a)) + blocks[7] - 45705983;
+    b = (b << 22 | b >>> 10) + c << 0;
+    a += (d ^ b & (c ^ d)) + blocks[8] + 1770035416;
+    a = (a << 7 | a >>> 25) + b << 0;
+    d += (c ^ a & (b ^ c)) + blocks[9] - 1958414417;
+    d = (d << 12 | d >>> 20) + a << 0;
+    c += (b ^ d & (a ^ b)) + blocks[10] - 42063;
+    c = (c << 17 | c >>> 15) + d << 0;
+    b += (a ^ c & (d ^ a)) + blocks[11] - 1990404162;
+    b = (b << 22 | b >>> 10) + c << 0;
+    a += (d ^ b & (c ^ d)) + blocks[12] + 1804603682;
+    a = (a << 7 | a >>> 25) + b << 0;
+    d += (c ^ a & (b ^ c)) + blocks[13] - 40341101;
+    d = (d << 12 | d >>> 20) + a << 0;
+    c += (b ^ d & (a ^ b)) + blocks[14] - 1502002290;
+    c = (c << 17 | c >>> 15) + d << 0;
+    b += (a ^ c & (d ^ a)) + blocks[15] + 1236535329;
+    b = (b << 22 | b >>> 10) + c << 0;
+    a += (c ^ d & (b ^ c)) + blocks[1] - 165796510;
+    a = (a << 5 | a >>> 27) + b << 0;
+    d += (b ^ c & (a ^ b)) + blocks[6] - 1069501632;
+    d = (d << 9 | d >>> 23) + a << 0;
+    c += (a ^ b & (d ^ a)) + blocks[11] + 643717713;
+    c = (c << 14 | c >>> 18) + d << 0;
+    b += (d ^ a & (c ^ d)) + blocks[0] - 373897302;
+    b = (b << 20 | b >>> 12) + c << 0;
+    a += (c ^ d & (b ^ c)) + blocks[5] - 701558691;
+    a = (a << 5 | a >>> 27) + b << 0;
+    d += (b ^ c & (a ^ b)) + blocks[10] + 38016083;
+    d = (d << 9 | d >>> 23) + a << 0;
+    c += (a ^ b & (d ^ a)) + blocks[15] - 660478335;
+    c = (c << 14 | c >>> 18) + d << 0;
+    b += (d ^ a & (c ^ d)) + blocks[4] - 405537848;
+    b = (b << 20 | b >>> 12) + c << 0;
+    a += (c ^ d & (b ^ c)) + blocks[9] + 568446438;
+    a = (a << 5 | a >>> 27) + b << 0;
+    d += (b ^ c & (a ^ b)) + blocks[14] - 1019803690;
+    d = (d << 9 | d >>> 23) + a << 0;
+    c += (a ^ b & (d ^ a)) + blocks[3] - 187363961;
+    c = (c << 14 | c >>> 18) + d << 0;
+    b += (d ^ a & (c ^ d)) + blocks[8] + 1163531501;
+    b = (b << 20 | b >>> 12) + c << 0;
+    a += (c ^ d & (b ^ c)) + blocks[13] - 1444681467;
+    a = (a << 5 | a >>> 27) + b << 0;
+    d += (b ^ c & (a ^ b)) + blocks[2] - 51403784;
+    d = (d << 9 | d >>> 23) + a << 0;
+    c += (a ^ b & (d ^ a)) + blocks[7] + 1735328473;
+    c = (c << 14 | c >>> 18) + d << 0;
+    b += (d ^ a & (c ^ d)) + blocks[12] - 1926607734;
+    b = (b << 20 | b >>> 12) + c << 0;
+    bc = b ^ c;
+    a += (bc ^ d) + blocks[5] - 378558;
+    a = (a << 4 | a >>> 28) + b << 0;
+    d += (bc ^ a) + blocks[8] - 2022574463;
+    d = (d << 11 | d >>> 21) + a << 0;
+    da = d ^ a;
+    c += (da ^ b) + blocks[11] + 1839030562;
+    c = (c << 16 | c >>> 16) + d << 0;
+    b += (da ^ c) + blocks[14] - 35309556;
+    b = (b << 23 | b >>> 9) + c << 0;
+    bc = b ^ c;
+    a += (bc ^ d) + blocks[1] - 1530992060;
+    a = (a << 4 | a >>> 28) + b << 0;
+    d += (bc ^ a) + blocks[4] + 1272893353;
+    d = (d << 11 | d >>> 21) + a << 0;
+    da = d ^ a;
+    c += (da ^ b) + blocks[7] - 155497632;
+    c = (c << 16 | c >>> 16) + d << 0;
+    b += (da ^ c) + blocks[10] - 1094730640;
+    b = (b << 23 | b >>> 9) + c << 0;
+    bc = b ^ c;
+    a += (bc ^ d) + blocks[13] + 681279174;
+    a = (a << 4 | a >>> 28) + b << 0;
+    d += (bc ^ a) + blocks[0] - 358537222;
+    d = (d << 11 | d >>> 21) + a << 0;
+    da = d ^ a;
+    c += (da ^ b) + blocks[3] - 722521979;
+    c = (c << 16 | c >>> 16) + d << 0;
+    b += (da ^ c) + blocks[6] + 76029189;
+    b = (b << 23 | b >>> 9) + c << 0;
+    bc = b ^ c;
+    a += (bc ^ d) + blocks[9] - 640364487;
+    a = (a << 4 | a >>> 28) + b << 0;
+    d += (bc ^ a) + blocks[12] - 421815835;
+    d = (d << 11 | d >>> 21) + a << 0;
+    da = d ^ a;
+    c += (da ^ b) + blocks[15] + 530742520;
+    c = (c << 16 | c >>> 16) + d << 0;
+    b += (da ^ c) + blocks[2] - 995338651;
+    b = (b << 23 | b >>> 9) + c << 0;
+    a += (c ^ (b | ~d)) + blocks[0] - 198630844;
+    a = (a << 6 | a >>> 26) + b << 0;
+    d += (b ^ (a | ~c)) + blocks[7] + 1126891415;
+    d = (d << 10 | d >>> 22) + a << 0;
+    c += (a ^ (d | ~b)) + blocks[14] - 1416354905;
+    c = (c << 15 | c >>> 17) + d << 0;
+    b += (d ^ (c | ~a)) + blocks[5] - 57434055;
+    b = (b << 21 | b >>> 11) + c << 0;
+    a += (c ^ (b | ~d)) + blocks[12] + 1700485571;
+    a = (a << 6 | a >>> 26) + b << 0;
+    d += (b ^ (a | ~c)) + blocks[3] - 1894986606;
+    d = (d << 10 | d >>> 22) + a << 0;
+    c += (a ^ (d | ~b)) + blocks[10] - 1051523;
+    c = (c << 15 | c >>> 17) + d << 0;
+    b += (d ^ (c | ~a)) + blocks[1] - 2054922799;
+    b = (b << 21 | b >>> 11) + c << 0;
+    a += (c ^ (b | ~d)) + blocks[8] + 1873313359;
+    a = (a << 6 | a >>> 26) + b << 0;
+    d += (b ^ (a | ~c)) + blocks[15] - 30611744;
+    d = (d << 10 | d >>> 22) + a << 0;
+    c += (a ^ (d | ~b)) + blocks[6] - 1560198380;
+    c = (c << 15 | c >>> 17) + d << 0;
+    b += (d ^ (c | ~a)) + blocks[13] + 1309151649;
+    b = (b << 21 | b >>> 11) + c << 0;
+    a += (c ^ (b | ~d)) + blocks[4] - 145523070;
+    a = (a << 6 | a >>> 26) + b << 0;
+    d += (b ^ (a | ~c)) + blocks[11] - 1120210379;
+    d = (d << 10 | d >>> 22) + a << 0;
+    c += (a ^ (d | ~b)) + blocks[2] + 718787259;
+    c = (c << 15 | c >>> 17) + d << 0;
+    b += (d ^ (c | ~a)) + blocks[9] - 343485551;
+    b = (b << 21 | b >>> 11) + c << 0;
+
+    if (this.first) {
+      this.h0 = a + 1732584193 << 0;
+      this.h1 = b - 271733879 << 0;
+      this.h2 = c - 1732584194 << 0;
+      this.h3 = d + 271733878 << 0;
+      this.first = false;
+    } else {
+      this.h0 = this.h0 + a << 0;
+      this.h1 = this.h1 + b << 0;
+      this.h2 = this.h2 + c << 0;
+      this.h3 = this.h3 + d << 0;
+    }
+  };
+
+  /**
+      * @method hex
+      * @memberof Md5
+      * @instance
+      * @description Output hash as hex string
+      * @returns {String} Hex string
+      * @see {@link md5.hex}
+      * @example
+      * hash.hex();
+      */
+  Md5.prototype.hex = function () {
+    this.finalize();
+
+    var h0 = this.h0,h1 = this.h1,h2 = this.h2,h3 = this.h3;
+
+    return HEX_CHARS[h0 >> 4 & 0x0F] + HEX_CHARS[h0 & 0x0F] +
+    HEX_CHARS[h0 >> 12 & 0x0F] + HEX_CHARS[h0 >> 8 & 0x0F] +
+    HEX_CHARS[h0 >> 20 & 0x0F] + HEX_CHARS[h0 >> 16 & 0x0F] +
+    HEX_CHARS[h0 >> 28 & 0x0F] + HEX_CHARS[h0 >> 24 & 0x0F] +
+    HEX_CHARS[h1 >> 4 & 0x0F] + HEX_CHARS[h1 & 0x0F] +
+    HEX_CHARS[h1 >> 12 & 0x0F] + HEX_CHARS[h1 >> 8 & 0x0F] +
+    HEX_CHARS[h1 >> 20 & 0x0F] + HEX_CHARS[h1 >> 16 & 0x0F] +
+    HEX_CHARS[h1 >> 28 & 0x0F] + HEX_CHARS[h1 >> 24 & 0x0F] +
+    HEX_CHARS[h2 >> 4 & 0x0F] + HEX_CHARS[h2 & 0x0F] +
+    HEX_CHARS[h2 >> 12 & 0x0F] + HEX_CHARS[h2 >> 8 & 0x0F] +
+    HEX_CHARS[h2 >> 20 & 0x0F] + HEX_CHARS[h2 >> 16 & 0x0F] +
+    HEX_CHARS[h2 >> 28 & 0x0F] + HEX_CHARS[h2 >> 24 & 0x0F] +
+    HEX_CHARS[h3 >> 4 & 0x0F] + HEX_CHARS[h3 & 0x0F] +
+    HEX_CHARS[h3 >> 12 & 0x0F] + HEX_CHARS[h3 >> 8 & 0x0F] +
+    HEX_CHARS[h3 >> 20 & 0x0F] + HEX_CHARS[h3 >> 16 & 0x0F] +
+    HEX_CHARS[h3 >> 28 & 0x0F] + HEX_CHARS[h3 >> 24 & 0x0F];
+  };
+
+  /**
+      * @method toString
+      * @memberof Md5
+      * @instance
+      * @description Output hash as hex string
+      * @returns {String} Hex string
+      * @see {@link md5.hex}
+      * @example
+      * hash.toString();
+      */
+  Md5.prototype.toString = Md5.prototype.hex;
+
+  /**
+                                               * @method digest
+                                               * @memberof Md5
+                                               * @instance
+                                               * @description Output hash as bytes array
+                                               * @returns {Array} Bytes array
+                                               * @see {@link md5.digest}
+                                               * @example
+                                               * hash.digest();
+                                               */
+  Md5.prototype.digest = function () {
+    this.finalize();
+
+    var h0 = this.h0,h1 = this.h1,h2 = this.h2,h3 = this.h3;
+    return [
+    h0 & 0xFF, h0 >> 8 & 0xFF, h0 >> 16 & 0xFF, h0 >> 24 & 0xFF,
+    h1 & 0xFF, h1 >> 8 & 0xFF, h1 >> 16 & 0xFF, h1 >> 24 & 0xFF,
+    h2 & 0xFF, h2 >> 8 & 0xFF, h2 >> 16 & 0xFF, h2 >> 24 & 0xFF,
+    h3 & 0xFF, h3 >> 8 & 0xFF, h3 >> 16 & 0xFF, h3 >> 24 & 0xFF];
+
+  };
+
+  /**
+      * @method array
+      * @memberof Md5
+      * @instance
+      * @description Output hash as bytes array
+      * @returns {Array} Bytes array
+      * @see {@link md5.array}
+      * @example
+      * hash.array();
+      */
+  Md5.prototype.array = Md5.prototype.digest;
+
+  /**
+                                               * @method arrayBuffer
+                                               * @memberof Md5
+                                               * @instance
+                                               * @description Output hash as ArrayBuffer
+                                               * @returns {ArrayBuffer} ArrayBuffer
+                                               * @see {@link md5.arrayBuffer}
+                                               * @example
+                                               * hash.arrayBuffer();
+                                               */
+  Md5.prototype.arrayBuffer = function () {
+    this.finalize();
+
+    var buffer = new ArrayBuffer(16);
+    var blocks = new Uint32Array(buffer);
+    blocks[0] = this.h0;
+    blocks[1] = this.h1;
+    blocks[2] = this.h2;
+    blocks[3] = this.h3;
+    return buffer;
+  };
+
+  /**
+      * @method buffer
+      * @deprecated This maybe confuse with Buffer in node.js. Please use arrayBuffer instead.
+      * @memberof Md5
+      * @instance
+      * @description Output hash as ArrayBuffer
+      * @returns {ArrayBuffer} ArrayBuffer
+      * @see {@link md5.buffer}
+      * @example
+      * hash.buffer();
+      */
+  Md5.prototype.buffer = Md5.prototype.arrayBuffer;
+
+  /**
+                                                     * @method base64
+                                                     * @memberof Md5
+                                                     * @instance
+                                                     * @description Output hash as base64 string
+                                                     * @returns {String} base64 string
+                                                     * @see {@link md5.base64}
+                                                     * @example
+                                                     * hash.base64();
+                                                     */
+  Md5.prototype.base64 = function () {
+    var v1,v2,v3,base64Str = '',bytes = this.array();
+    for (var i = 0; i < 15;) {
+      v1 = bytes[i++];
+      v2 = bytes[i++];
+      v3 = bytes[i++];
+      base64Str += BASE64_ENCODE_CHAR[v1 >>> 2] +
+      BASE64_ENCODE_CHAR[(v1 << 4 | v2 >>> 4) & 63] +
+      BASE64_ENCODE_CHAR[(v2 << 2 | v3 >>> 6) & 63] +
+      BASE64_ENCODE_CHAR[v3 & 63];
+    }
+    v1 = bytes[i];
+    base64Str += BASE64_ENCODE_CHAR[v1 >>> 2] +
+    BASE64_ENCODE_CHAR[v1 << 4 & 63] +
+    '==';
+    return base64Str;
+  };
+
+  var exports = createMethod();
+
+  if (COMMON_JS) {
+    module.exports = exports;
+  } else {
+    /**
+           * @method md5
+           * @description Md5 hash function, export to global in browsers.
+           * @param {String|Array|Uint8Array|ArrayBuffer} message message to hash
+           * @returns {String} md5 hashes
+           * @example
+           * md5(''); // d41d8cd98f00b204e9800998ecf8427e
+           * md5('The quick brown fox jumps over the lazy dog'); // 9e107d9d372bb6826bd81d3542a419d6
+           * md5('The quick brown fox jumps over the lazy dog.'); // e4d909c290d0fb1ca068ffaddf22cbd0
+           *
+           * // It also supports UTF-8 encoding
+           * md5('中文'); // a7bac2239fcdcb3a067903d8077c4a07
+           *
+           * // It also supports byte `Array`, `Uint8Array`, `ArrayBuffer`
+           * md5([]); // d41d8cd98f00b204e9800998ecf8427e
+           * md5(new Uint8Array([])); // d41d8cd98f00b204e9800998ecf8427e
+           */
+    root.md5 = exports;
+    if (AMD) {
+      !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+        return exports;
+      }).call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    }
+  }
+})();
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 64), __webpack_require__(/*! ./../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/webpack/buildin/global.js */ 3)))
+
+/***/ }),
+
+/***/ 64:
+/*!********************************************************!*\
+  !*** ./node_modules/node-libs-browser/mock/process.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports.nextTick = function nextTick(fn) {
+    var args = Array.prototype.slice.call(arguments);
+    args.shift();
+    setTimeout(function () {
+        fn.apply(null, args);
+    }, 0);
+};
+
+exports.platform = exports.arch = 
+exports.execPath = exports.title = 'browser';
+exports.pid = 1;
+exports.browser = true;
+exports.env = {};
+exports.argv = [];
+
+exports.binding = function (name) {
+	throw new Error('No such module. (Possibly not yet loaded)')
+};
+
+(function () {
+    var cwd = '/';
+    var path;
+    exports.cwd = function () { return cwd };
+    exports.chdir = function (dir) {
+        if (!path) path = __webpack_require__(/*! path */ 65);
+        cwd = path.resolve(dir, cwd);
+    };
+})();
+
+exports.exit = exports.kill = 
+exports.umask = exports.dlopen = 
+exports.uptime = exports.memoryUsage = 
+exports.uvCounters = function() {};
+exports.features = {};
+
+
+/***/ }),
+
+/***/ 65:
+/*!***********************************************!*\
+  !*** ./node_modules/path-browserify/index.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
+// backported and transplited with Babel, with backwards-compat fixes
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  if (path.length === 0) return '.';
+  var code = path.charCodeAt(0);
+  var hasRoot = code === 47 /*/*/;
+  var end = -1;
+  var matchedSlash = true;
+  for (var i = path.length - 1; i >= 1; --i) {
+    code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        if (!matchedSlash) {
+          end = i;
+          break;
+        }
+      } else {
+      // We saw the first non-path separator
+      matchedSlash = false;
+    }
+  }
+
+  if (end === -1) return hasRoot ? '/' : '.';
+  if (hasRoot && end === 1) {
+    // return '//';
+    // Backwards-compat fix:
+    return '/';
+  }
+  return path.slice(0, end);
+};
+
+function basename(path) {
+  if (typeof path !== 'string') path = path + '';
+
+  var start = 0;
+  var end = -1;
+  var matchedSlash = true;
+  var i;
+
+  for (i = path.length - 1; i >= 0; --i) {
+    if (path.charCodeAt(i) === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          start = i + 1;
+          break;
+        }
+      } else if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // path component
+      matchedSlash = false;
+      end = i + 1;
+    }
+  }
+
+  if (end === -1) return '';
+  return path.slice(start, end);
+}
+
+// Uses a mixed approach for backwards-compatibility, as ext behavior changed
+// in new Node.js versions, so only basename() above is backported here
+exports.basename = function (path, ext) {
+  var f = basename(path);
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+exports.extname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  var startDot = -1;
+  var startPart = 0;
+  var end = -1;
+  var matchedSlash = true;
+  // Track the state of characters (if any) we see before our first dot and
+  // after any path separator we find
+  var preDotState = 0;
+  for (var i = path.length - 1; i >= 0; --i) {
+    var code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          startPart = i + 1;
+          break;
+        }
+        continue;
+      }
+    if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // extension
+      matchedSlash = false;
+      end = i + 1;
+    }
+    if (code === 46 /*.*/) {
+        // If this is our first dot, mark it as the start of our extension
+        if (startDot === -1)
+          startDot = i;
+        else if (preDotState !== 1)
+          preDotState = 1;
+    } else if (startDot !== -1) {
+      // We saw a non-dot and non-path separator before our dot, so we should
+      // have a good chance at having a non-empty extension
+      preDotState = -1;
+    }
+  }
+
+  if (startDot === -1 || end === -1 ||
+      // We saw a non-dot character immediately before the dot
+      preDotState === 0 ||
+      // The (right-most) trimmed path component is exactly '..'
+      preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
+    return '';
+  }
+  return path.slice(startDot, end);
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 64)))
+
+/***/ }),
+
+/***/ 66:
+/*!****************************************!*\
+  !*** (webpack)/buildin/amd-options.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
+module.exports = __webpack_amd_options__;
+
+/* WEBPACK VAR INJECTION */}.call(this, {}))
 
 /***/ })
 

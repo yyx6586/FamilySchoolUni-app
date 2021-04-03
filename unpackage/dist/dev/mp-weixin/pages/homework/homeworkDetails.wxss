@@ -25,4 +25,41 @@ page{
 	margin-left: 20rpx;
 	word-break: break-word;
 }
+.first-view-btn{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	margin-top: 50rpx;
+}
+.submit-btn{
+	width: 300rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	vertical-align: center;
+	border-radius: 5%;
+	background-color: #DCDCDC;
+}
+.reset-btn{
+	width: 300rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	vertical-align: center;
+	border-radius: 5%;
+}
+.textarea-value{
+	color: #333333;
+	font-size: 35rpx;
+	margin-top: 15rpx;
+	padding: 20rpx;
+	resize: none;
+	background-color: #F4F5F6;
+	width: auto;
+}
 

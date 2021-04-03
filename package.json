@@ -1,0 +1,13 @@
+{
+    "id": "beauty-calendar",
+    "name": "日历插件美化版",
+    "version": "1.0.3.4",
+    "description": "组件可以对日期进行单选，多选，适用酒店预定、飞机票火车票预定",
+    "keywords": [
+        "日历",
+        "日期选择器",
+        "酒店",
+        "calendar",
+        "picker"
+    ]
+}
