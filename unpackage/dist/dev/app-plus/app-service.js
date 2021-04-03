@@ -7121,8 +7121,6 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    kScrollView: __webpack_require__(/*! @/components/k-scroll-view/k-scroll-view.vue */ 138)
-      .default,
     uniList: __webpack_require__(/*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 143)
       .default,
     uniListItem: __webpack_require__(/*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 148)
@@ -8074,8 +8072,6 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    kScrollView: __webpack_require__(/*! @/components/k-scroll-view/k-scroll-view.vue */ 138)
-      .default,
     uniList: __webpack_require__(/*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 143)
       .default,
     uniListItem: __webpack_require__(/*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 148)
