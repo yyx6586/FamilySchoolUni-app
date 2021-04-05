@@ -47,6 +47,13 @@
 			console.log(this.gradeclass_id)
 			console.log(this.account)
 		},
+		
+		onShow() {
+			this.title = ""
+			this.content = ""
+			this.account = uni.getStorageSync('account')
+		},
+		
 		methods:{
 			...mapActions({
 				noticeInformation:'notice/noticeInformation'
@@ -90,7 +97,8 @@
 					"grade_id": this.gradeclass_id,
 					"title": this.title,
 					"information": this.content,
-					"showBadge":"true"
+					"show_teacher":"1",
+					"show_student":"1"
 				}).then(res => {
 					console.log(res)
 					uni.showToast({
@@ -110,8 +118,9 @@
 			    console.log('清空数据')
 			},
 			release(){
+				console.log(this.gradeclass_id)
 				uni.navigateTo({
-					url:"./release?grade_id=" + this.gradeclass_id,
+					url:"./release?gradeclass_id=" + this.gradeclass_id,
 				})
 			},
 		}

@@ -33,7 +33,7 @@
 		<!-- QQ -->
 		<view class="first-view">
 			<view class="title-view">QQ</view>
-			<view class="value-view">{{QQ}}</view>
+			<view class="value-view">{{qq}}</view>
 		</view>
 		
 		<!-- 微信 -->
@@ -55,33 +55,33 @@
 		</view>
 		
 		<!-- 家长姓名 -->
-		<view class="first-view" v-if="item.role == 2">
+		<view class="first-view" v-if="role == 2">
 			<view class="title-view">家长姓名</view>
-			<view class="value-view">{{parent_name}}</view>
+			<view class="value-view">{{informationList.parent_name}}</view>
 		</view>
 		
 		<!-- 家长电话 -->
 		<view class="first-view" v-if="role == 2">
 			<view class="title-view">家长电话</view>
-			<view class="value-view">{{parent_phone}}</view>
+			<view class="value-view">{{informationList.parent_phone}}</view>
 		</view>
 		
 		<!-- 家长QQ -->
 		<view class="first-view" v-if="role == 2">
 			<view class="title-view">家长QQ</view>
-			<view class="value-view">{{parent_QQ}}</view>
+			<view class="value-view">{{informationList.parent_qq}}</view>
 		</view>
 		
 		<!-- 家长微信 -->
 		<view class="first-view" v-if="role == 2">
 			<view class="title-view">家长微信</view>
-			<view class="value-view">{{parent_wechat}}</view>
+			<view class="value-view">{{informationList.parent_wechat}}</view>
 		</view>
 		
 		<!-- 家庭地址 -->
 		<view class="first-view" v-if="role == 2">
 			<view class="title-view">家长家庭地址</view>
-			<view class="value-view">{{parent_address}}</view>
+			<view class="value-view">{{informationList.parent_address}}</view>
 		</view>
 		
 	</view>
@@ -93,18 +93,19 @@
 	export default{
 		data() {
 			return{
+				informationList:{},
 				account: "",
 				name:"",
 				sex: "",
 				role:"",
 				phone:"",
-				QQ:"",
+				qq:"",
 				wechat:"",
 				email:"",
 				address:"",
 				parent_name:"",
 				parent_phone:"",
-				parent_QQ:"",
+				parent_qq:"",
 				parent_wechat:"",
 				parent_address:"",
 				src:"../../static/index/three.jpg"
@@ -116,6 +117,10 @@
 			console.log(this.account)      //打印出上页面传递的参数
 			console.log(this.role)
 			
+		},
+		
+		onShow() {
+			this.role = uni.getStorageSync('role')
 		},
 		
 		async mounted() {
@@ -165,17 +170,17 @@
 						// }else{
 						// 	this.sex = "女"
 						// }
-						
+						this.informationList = res.data
 						this.name = res.data.name
 						this.role = res.data.role
 						this.phone = res.data.phone
-						this.QQ = res.data.QQ
+						this.qq = res.data.qq
 						this.wechat = res.data.wechat
 						this.email = res.data.email
 						this.address = res.data.address
 						this.parent_name = res.data.parent_name
 						this.parent_phone = res.data.parent_phone
-						this.parent_QQ = res.data.parent_QQ
+						this.parent_qq = res.data.parent_qq
 						this.parent_wechat = res.data.parent_wechat
 						this.parent_address = res.data.parent_address
 						this.src = res.data.url
@@ -186,8 +191,8 @@
 						if (res.data.phone == null){
 							this.phone = ""
 						}
-						if (res.data.QQ == null){
-							this.QQ = ""
+						if (res.data.qq == null){
+							this.qq = ""
 						}
 						if (res.data.wechat == null){
 							this.wechat = ""
@@ -204,8 +209,8 @@
 						if (res.data.parent_phone == null){
 							this.parent_phone = ""
 						}
-						if (res.data.parent_QQ == null){
-							this.parent_QQ = ""
+						if (res.data.parent_qq == null){
+							this.parent_qq = ""
 						}
 						if (res.data.parent_wechat == null){
 							this.parent_wechat = ""

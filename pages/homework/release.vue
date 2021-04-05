@@ -16,7 +16,8 @@
 		    >
 		    <!-- 数据列表 -->
 		    <uni-list v-for="(item, index) in informationList" :key="index"> 
-		        <uni-list-item  :title="item.title" badgeType="error" badgeText="1" :rightText="item.update_time | formatDate" :note="item.homework" clickable="true" @click="goToNoticeDetails(index)"></uni-list-item>
+		        <uni-list-item v-if="role == 1" :title="item.title" badgeType="error" badgeText="1" :rightText="item.update_time | formatDate" :note="item.homework" :showBadge="item.show_teacher" clickable="true" @click="goToNoticeDetails(index)"></uni-list-item>
+				<uni-list-item v-if="role == 2" :title="item.title" badgeType="error" badgeText="1" :rightText="item.update_time | formatDate" :note="item.homework" :showBadge="item.show_student" clickable="true" @click="goToNoticeDetails(index)"></uni-list-item>
 		    </uni-list>
 		</k-scroll-view>
 	</view>
@@ -33,6 +34,8 @@
 		
 		data() {
 			return{
+				account:"",
+				role:"",
 				curPage: 0,     //当前第几条记录
 				pageSize: 20,   // 一页多少条记录
 				gradeclass_id:"",
@@ -73,6 +76,23 @@
 		onLoad(option) {
 			this.gradeclass_id = option.gradeclass_id
 			console.log(this.gradeclass_id) 
+			this.role = uni.getStorageSync('role')
+			this.account = uni.getStorageSync('account')
+		},
+		
+		onShow() {
+			// 显示加载框
+			uni.showLoading({
+			    title: '加载中...'
+			})
+			
+			this.account = uni.getStorageSync('account')
+			this.role = uni.getStorageSync('role')
+			
+			this.getHomeworkList()
+			
+			//关闭加载框
+			uni.hideLoading();
 		},
 		
 		async mounted() {
@@ -102,12 +122,24 @@
 					console.log(res)
 					if(res.data != null){
 						for(var i = 0; i < res.data.length; i ++){
-							if(res.data[i].showBadge == "true"){
-								res.data[i].showBadge = true
+							if(this.account == res.data[i].account){
+								res.data[i].show_teacher = false
 							}
 							
-							if(res.data[i].showBadge == "false"){
-								res.data[i].showBadge = false
+							if(res.data[i].show_teacher == "1"){
+								res.data[i].show_teacher = true
+							}
+							
+							if(res.data[i].show_teacher == "0"){
+								res.data[i].show_teacher = false
+							}
+							
+							if(res.data[i].show_student == "1"){
+								res.data[i].show_student = true
+							}
+							
+							if(res.data[i].show_student == "0"){
+								res.data[i].show_student = false
 							}
 							
 							if(res.data[i].title.length > 9){
@@ -137,7 +169,7 @@
 				})
 				
 				uni.navigateTo({
-					url:"homeworkDetails?id=" + this.informationList[e].id + "&gradeclass_id=" + this.informationList[e].gradeclass_id + "&account=" + this.informationList[e].account + "&showBadge=" + this.informationList[e].showBadge,
+					url:"homeworkDetails?id=" + this.informationList[e].id + "&gradeclass_id=" + this.informationList[e].gradeclass_id + "&account=" + this.informationList[e].account,
 				})
 				
 				//关闭加载框
@@ -168,12 +200,24 @@
 					}).then(res => {
 						console.log(res)
 						for(var i = 0; i < res.data.length; i ++){
-							if(res.data[i].showBadge == "true"){
-								res.data[i].showBadge = true
+							if(this.account == res.data[i].account){
+								res.data[i].show_teacher = false
 							}
 							
-							if(res.data[i].showBadge == "false"){
-								res.data[i].showBadge = false
+							if(res.data[i].show_teacher == "1"){
+								res.data[i].show_teacher = true
+							}
+							
+							if(res.data[i].show_teacher == "0"){
+								res.data[i].show_teacher = false
+							}
+							
+							if(res.data[i].show_student == "1"){
+								res.data[i].show_student = true
+							}
+							
+							if(res.data[i].show_student == "0"){
+								res.data[i].show_student = false
 							}
 							
 							if(res.data[i].title.length > 9){

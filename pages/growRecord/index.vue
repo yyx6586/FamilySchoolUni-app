@@ -1,7 +1,23 @@
 <template>
 	<view>
+		<!-- 请选择发布的图片或者视频 -->
+		<view style="background-color: #FFFFFF;padding-bottom: 10rpx;display: flex;flex-direction: row;justify-content:flex-start;height: 80rpx;line-height: 80rpx;vertical-align: cenetr;">
+			<view style="margin-left: 30rpx;border-bottom: 1rpx solid #F5F5F5;height: 80rpx;width: 120rpx;line-height: 80rpx;vertical-align: center;">请选择</view>
+		    <radio-group @change="radioChange">
+				<label class="radio"><radio value="图片" checked="true"/>图片</label>
+				<label class="radio"><radio value="视频" />视频</label>
+			</radio-group>
+		</view>
+		
 		<!-- 上传图片 -->
-		<view>
+		<view v-if="imgOrVideo == 0">
+			<!-- 上传时间 -->
+			<view style="margin-left: 30rpx;display: flex;flex-direction: row;justify-content:flex-start;height: 80rpx;line-height: 80rpx;vertical-align: cenetr;border-bottom: 1rpx solid #F8F8F8;margin-top: 10rpx;">
+			    <view style="margin-right: 15rpx;">发布时间</view>
+			    <view>{{release_time}}</view>
+			</view>
+			
+			<!-- 图片描述 -->
 			<view>
 				<view style="background-color: #FFFFFF;padding-left: 30rpx;border-bottom: 1rpx solid #F8F8F8;height: 100rpx;line-height: 100rpx;vertical-align: center;">添加图片描述</view>
 				<textarea v-model="description" placeholder="请输入内容" style="background-color: #FFFFFF;width: 100%;padding-left: 30rpx;padding-top: 15rpx;height:300rpx;border-bottom: 1rpx solid #F8F8F8;"></textarea>
@@ -21,14 +37,21 @@
 		</view>
 		
 		<!-- 上传视频 -->
-		<view style="margin-top: 50rpx;">
+		<view v-if="imgOrVideo == 1" style="margin-top: 50rpx;">
+			<!-- 上传时间 -->
+			<view style="margin-left: 30rpx;display: flex;flex-direction: row;justify-content:flex-start;height: 80rpx;line-height: 80rpx;vertical-align: cenetr;border-bottom: 1rpx solid #F8F8F8;margin-top: 10rpx;">
+			    <view style="margin-right: 15rpx;">发布时间</view>
+			    <view>{{release_time}}</view>
+			</view>
+			
+			<!-- 视频描述 -->
 			<view>
 				<view style="background-color: #FFFFFF;padding-left: 30rpx;border-bottom: 1rpx solid #F8F8F8;height: 100rpx;line-height: 100rpx;vertical-align: center;">添加视频描述</view>
 				<textarea v-model="descriptionVideo" placeholder="请输入内容" style="background-color: #FFFFFF;width: 100%;padding-left: 30rpx;padding-top: 15rpx;height:300rpx;border-bottom: 1rpx solid #F8F8F8;"></textarea>
 			</view>
 			<view style="margin-top: 20rpx;margin-left: 20rpx;margin-right: 20rpx;text-align: center;border-bottom: 1rpx solid #F8F8F8;padding-bottom: 15rpx;">
-				<view class="img" v-for="(item, index) in videoList" :key='index'>
-						<video style="width: 100%;height: 100%;" :src="item.url"></video>
+				<view class="img" style="background-color: #F8F8F8;" v-for="(item, index) in videoList" :key='index'>
+						<video style="width: 80%;height: 80%;margin-top: 20rpx;margin-right: 20rpx;" :src="item.url"></video>
 						<view @click.stop="DelVideo(index)" style="display: inline;">
 							<uni-icons type="closeempty" class="close" size="20"></uni-icons>
 						</view>
@@ -63,7 +86,9 @@
 				video:"",
 				videoList:[],
 				videoName:"",
-				showBadge:""    // 1表示图片  2 表示视频
+				imgOrVideo:"0",
+				showBadge:"",    // 0 表示未读  1 表示已读
+				release_time:""
 			}
 		},
 		
@@ -74,10 +99,50 @@
 			console.log(this.gradeclass_id)
 		},
 		
+		onShow() {
+			this.token = uni.getStorageSync('token')
+			this.account = uni.getStorageSync('account')
+			
+			this.release_time = this.formatDateTime(new Date().getTime())
+			console.log(this.release_time)
+		},
+		
 		methods:{
 			...mapActions({
 				saveImg:'growRecord/saveImg'
 			}),
+			
+			// 将时间戳转化成时间
+			formatDateTime(inputTime) { //时间戳 转 YY-mm-dd HH:ii:ss 
+				var date = new Date(inputTime);
+				var y = date.getFullYear();
+				var m = date.getMonth() + 1;
+				m = m < 10 ? ('0' + m) : m;
+				var d = date.getDate();
+				d = d < 10 ? ('0' + d) : d;
+				var h = date.getHours();
+				h = h < 10 ? ('0' + h) : h;
+				var minute = date.getMinutes();
+				var second = date.getSeconds();
+				minute = minute < 10 ? ('0' + minute) : minute;
+				second = second < 10 ? ('0' + second) : second;
+				return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+		    },
+			
+			radioChange(e){
+				// 显示加载框
+				uni.showLoading({
+				    title: '加载中...'
+				});
+				if(e.target.value == "图片"){
+					this.imgOrVideo = "0"
+				}else{
+					this.imgOrVideo = "1"
+				}
+				//关闭加载框
+				uni.hideLoading();
+				
+			},
 			
 			// 选择图片
 			ChooseImage(){
@@ -186,8 +251,10 @@
 						"gradeclass_id":this.gradeclass_id,
 						"description":this.description,
 						"name":this.imgName,
-						"showBadge":"1",
-						"status":"0"
+						"show_teacher":"1",
+						"show_student":"1",
+						"status":"0",
+						"release_time":this.release_time
 					}).then(res => {
 						console.log(res) 
 						uni.showToast({
@@ -311,8 +378,10 @@
 						"gradeclass_id":this.gradeclass_id,
 						"description":this.descriptionVideo,
 						"name":this.videoName,
-						"showBadge":"2",
-						"status":"1"
+						"show_teacher":"1",
+						"show_student":"1",
+						"status":"1",
+						"release_time":this.release_time
 					}).then(res => {
 						console.log(res) 
 						uni.showToast({
@@ -334,7 +403,7 @@
 				})
 				
 				uni.navigateTo({
-				    url:"../growRecord/release?gradeclass_id=" + this.gradeclass_id,
+				    url:"../growRecord/releaseList?gradeclass_id=" + this.gradeclass_id,
 				})
 				
 				//关闭加载框
@@ -365,7 +434,8 @@
 	.close {
 		position: absolute;
 		right: 0;
-		background-color: rgba(0, 0, 0, .4);
+		background-color: #fff;
+		opacity: 0.5;
 		color: #fff;
 	}
 	.camera {

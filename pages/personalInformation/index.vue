@@ -23,7 +23,7 @@
 		<!-- 性别 -->
 		<view class="first-view">
 			<view class="title-view">性别</view>
-			<pullDown class="value-view" :textList="sexList" @click="getSexValue"></pullDown>
+			<pullDown class="value-view" :textList="sexList" :count="count" @click="getSexValue"></pullDown>
 		</view>
 		
 		<!-- 电话 -->
@@ -35,7 +35,7 @@
 		<!-- QQ -->
 		<view class="first-view">
 			<view class="title-view">QQ</view>
-			<input class="value-view" v-model="QQ" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
+			<input class="value-view" v-model="qq" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
 		</view>
 		
 		<!-- 微信 -->
@@ -59,31 +59,31 @@
 		<!-- 家长姓名 -->
 		<view class="first-view" v-if="role == 2">
 			<view class="title-view">家长姓名</view>
-			<input class="value-view" v-model="parentName" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
+			<input class="value-view" v-model="parent_name" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
 		</view>
 		
 		<!-- 家长电话 -->
 		<view class="first-view" v-if="role == 2">
 			<view class="title-view">家长电话</view>
-			<input class="value-view" v-model="parenPhone" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
+			<input class="value-view" v-model="paren_phone" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
 		</view>
 		
 		<!-- 家长QQ -->
 		<view class="first-view" v-if="role == 2">
 			<view class="title-view">家长QQ</view>
-			<input class="value-view" v-model="parentQQ" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
+			<input class="value-view" v-model="parent_qq" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
 		</view>
 		
 		<!-- 家长微信 -->
 		<view class="first-view" v-if="role == 2">
 			<view class="title-view">家长微信</view>
-			<input class="value-view" v-model="parentWechat" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
+			<input class="value-view" v-model="parent_wechat" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
 		</view>
 		
 		<!-- 家庭地址 -->
 		<view class="first-view" v-if="role == 2">
 			<view class="title-view">家长家庭地址</view>
-			<input class="value-view" v-model="parentAddress" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
+			<input class="value-view" v-model="parent_address" type="text" placeholder="请输入" placeholder-style="font-size:35rpx"/>
 		</view>
 		
 		<!-- 保存按钮 -->
@@ -108,23 +108,32 @@
 				role:"",  // 1为教师  2为家长
 				account:"",
 				name:"", 
-				sex:"1",
+				sex:"男",
 				phone:"",
-				QQ:"",
+				qq:"",
 				wechat:"",
 				email:"",
 				address:"",
-				parentName:"",
-				parenPhone:"",
-				parentQQ:"",
-				parentWechat:"",
-				parentAddress:"",
+				parent_name:"",
+				paren_phone:"",
+				parent_qq:"",
+				parent_wechat:"",
+				parent_address:"",
 				sexList:["男","女"],
 				src:"../../static/index/three.jpg",
-				url:""
+				url:"",
+				count:0
 			}
 		},
 		onLoad() {
+			this.role = uni.getStorageSync('role')
+			this.account = uni.getStorageSync('account')
+			this.name = uni.getStorageSync('name')
+			this.token = uni.getStorageSync('token')
+			console.log(this.role)
+		},
+		
+		onShow() {
 			this.role = uni.getStorageSync('role')
 			this.account = uni.getStorageSync('account')
 			this.name = uni.getStorageSync('name')
@@ -174,24 +183,25 @@
 					if(res.data != null){
 						if (res.code == 1){
 							
-							if (res.data.sex == 1){
-								this.sex = "男"
+							this.sex = res.data.sex
+							if (res.data.sex == "男"){
+								this.count = 0
 							}else{
-								this.sex = "女"
+								this.count = 1
 							}
 							
 							this.name = res.data.name
 							this.role = res.data.role
 							this.phone = res.data.phone
-							this.QQ = res.data.QQ
+							this.qq = res.data.qq
 							this.wechat = res.data.wechat
 							this.email = res.data.email
 							this.address = res.data.address
-							this.parentName = res.data.parent_name
-							this.parenPhone = res.data.parent_phone
-							this.parentQQ = res.data.parent_QQ
-							this.parentWechat = res.data.parent_wechat
-							this.parentAddress = res.data.parent_address
+							this.parent_name = res.data.parent_name
+							this.paren_phone = res.data.parent_phone
+							this.parent_qq = res.data.parent_qq
+							this.parenta_wechat = res.data.parent_wechat
+							this.parent_address = res.data.parent_address
 							this.src = res.data.url
 							
 							if (res.data.name == null){
@@ -200,8 +210,8 @@
 							if (res.data.phone == null){
 								this.phone = ""
 							}
-							if (res.data.QQ == null){
-								this.QQ = ""
+							if (res.data.qq == null){
+								this.qq = ""
 							}
 							if (res.data.wechat == null){
 								this.wechat = ""
@@ -212,20 +222,20 @@
 							if (res.data.address == null){
 								this.address = ""
 							}
-							if (res.data.parentName == null){
-								this.parentName = ""
+							if (res.data.parent_name == null){
+								this.parent_name = ""
 							}
-							if (res.data.parentPhone == null){
-								this.parentPhone = ""
+							if (res.data.parent_phone == null){
+								this.parent_phone = ""
 							}
-							if (res.data.parentQQ == null){
-								this.parentQQ = ""
+							if (res.data.parent_qq == null){
+								this.parent_qq = ""
 							}
-							if (res.data.parentWechat == null){
-								this.parentWechat = ""
+							if (res.data.parent_wechat == null){
+								this.parent_wechat = ""
 							}
-							if (res.data.parentAddress == null){
-								this.parentAddress = ""
+							if (res.data.parent_address == null){
+								this.parent_address = ""
 							}
 							
 						}else{
@@ -241,13 +251,10 @@
 			},
 			
 			getSexValue(e,i){
-				if (e == "男"){
-					this.sex = "1"
-				}else{
-					this.sex = "2"
-				}
+				this.sex = e
 			},
 			
+			// 保存
 			save(){
 				uni.showLoading({
 				    title: '加载中...'
@@ -310,7 +317,7 @@
 						"name":this.name,
 						"sex":this.sex,
 						"phone":this.phone,
-						"QQ":this.QQ,
+						"QQ":this.qq,
 						"wechat":this.wechat,
 						"address":this.address,
 						"email":this.email
@@ -347,21 +354,21 @@
 						"studentName":this.name,
 						"studentSex":this.sex,
 						"phone":this.phone,
-						"QQ":this.QQ,
+						"QQ":this.qq,
 						"wechat":this.wechat,
 						"address":this.address,
-						"parentName":this.parentName,
-						"parentPhone":this.parentPhone,
-						"parentQQ":this.parentQQ,
-						"parentWechat":this.parentWechat,
-						"parentAddress":this.parentAddress
+						"parentName":this.parent_name,
+						"parentPhone":this.parent_phone,
+						"parentQQ":this.parent_qq,
+						"parentWechat":this.parent_wechat,
+						"parentAddress":this.parent_address
 					}).then(res => {
 						uni.showToast({
 						    title: res.msg,
 							icon:'none',
 							mask:true,
 						    duration: 2000
-						});
+						}); 
 					})
 				}
 				

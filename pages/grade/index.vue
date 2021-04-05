@@ -2,7 +2,7 @@
 	<view>
 		
 		<!-- 考试名称 -->
-		<view class="first-view">
+		<view class="first-view" style="margin-top: 30rpx;">
 			<view class="title-view">考试名称</view>
 			<input class="value-view" v-model="score_name" type="text" placeholder="如:第一次月考" placeholder-style="font-size:35rpx"/>
 		</view>
@@ -39,9 +39,12 @@
 		</view>
 		
 		<!-- 考生 -->
-		<view class="first-view" v-for="(item,index) in studentList" :key="index">
-			<view class="title-view">{{item.id}}</view>
-			<input class="value-view" v-model="score[index]" type="text" placeholder="请输入分数" placeholder-style="font-size:35rpx"/>
+		<view>
+			<view style="padding-left: 20rpx;margin-top: 60rpx;background-color: #F5F5F5;height: 80rpx;line-height: 80rpx;vertical-align: center;">学生分数</view>
+			<view class="first-view" v-for="(item,index) in studentList" :key="index">
+				<view class="title-view">{{item.id}}</view>
+				<input class="value-view" v-model="score[index]" type="text" placeholder="请输入分数" placeholder-style="font-size:35rpx"/>
+			</view>
 		</view>
 		
 		<!-- 保存 -->
@@ -87,6 +90,21 @@
 			this.allScore = "",
 			console.log(this.account)
 			console.log(this.gradeclass_id)
+		},
+		
+		onShow() {
+			// 显示加载框
+			uni.showLoading({
+			    title: '加载中...'
+			});
+			
+			this.account = uni.getStorageSync('account')
+			
+			//根据班级与年级 gradeclass_id 查询该班级学生的人数
+			this.getPeople() 
+			
+			//关闭加载框
+			uni.hideLoading();
 		},
 		
 		async mounted() {
@@ -202,13 +220,13 @@
  
 <style>
 	.first-view{
-		height: 130rpx;
 		display: flex;
 		flex-direction: row;
 		justify-content:flex-start;
 		align-items:center;
-		margin-top: 30rpx;
+		margin-top: 60rpx;
 		background-color: #FFFFFF;
+		border-bottom: 1rpx solid #EAEAEA;
 	}
 	.title-view{
 		color: #333333;
@@ -219,6 +237,7 @@
 		color: #333333;
 		font-size: 38rpx;
 		word-break: break-word;
+		margin-bottom: 10rpx;
 	}
 	.save{
 		width: 100%;

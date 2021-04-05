@@ -1,17 +1,5 @@
 <template>
 	<view>
-		<!-- 请选择发布的图片或者视频 -->
-		<view style="background-color: #FFFFFF;padding-bottom: 10rpx;display: flex;flex-direction: row;justify-content:flex-start;">
-			<view style="margin-left: 30rpx;border-bottom: 1rpx solid #F5F5F5;height: 80rpx;width: 120rpx;line-height: 80rpx;vertical-align: center;">请选择</view>
-			<!-- <view>
-				<pullDown :textList="statusList" @click="getStatusValue"></pullDown>
-			</view> -->
-		    <radio-group @change="radioChange">
-				<label class="radio"><radio value="图片" checked="true" />图片</label>
-				<label class="radio"><radio value="视频" />视频</label>
-			</radio-group>
-		</view>
-		
 		<!-- 图片 -->
 		<view v-if="imgOrVideo == 0">
 			<!-- 发布者 -->
@@ -30,7 +18,7 @@
 				<!-- 发布者时间 -->
 				<view style="background-color: #FFFFFF;padding-bottom: 10rpx;margin-top: 50rpx;">
 					<view style="margin-left: 30rpx;border-bottom: 1rpx solid #F5F5F5;height: 80rpx;width: 150rpx;line-height: 80rpx;vertical-align: center;">发布时间</view>
-					<view style="margin-left: 30rpx;border-bottom: 1rpx solid #F5F5F5;height: 80rpx;line-height: 80rpx;vertical-align: center;">{{imgList[0].update_time | formatDate}}</view>
+					<view style="margin-left: 30rpx;border-bottom: 1rpx solid #F5F5F5;height: 80rpx;line-height: 80rpx;vertical-align: center;">{{release_time}}</view>
 				</view>
 				
 				<!-- 图片描述 -->
@@ -80,7 +68,7 @@
 			<!-- 发布者时间 -->
 			<view style="background-color: #FFFFFF;padding-bottom: 10rpx;margin-top: 50rpx;">
 				<view style="margin-left: 30rpx;border-bottom: 1rpx solid #F5F5F5;height: 80rpx;width: 150rpx;line-height: 80rpx;vertical-align: center;">发布时间</view>
-				<view style="margin-left: 30rpx;border-bottom: 1rpx solid #F5F5F5;height: 80rpx;line-height: 80rpx;vertical-align: center;">{{videoList[0].update_time | formatDate}}</view>
+				<view style="margin-left: 30rpx;border-bottom: 1rpx solid #F5F5F5;height: 80rpx;line-height: 80rpx;vertical-align: center;">{{release_time}}</view>
 			</view>
 			
 			<!-- 视频描述 -->
@@ -99,8 +87,8 @@
 				</view>
 				
 				<view v-if="status == 1 && role == 1" style="margin-top: 20rpx;margin-left: 20rpx;margin-right: 20rpx;text-align: center;border-bottom: 1rpx solid #F8F8F8;padding-bottom: 15rpx;">
-					<view class="img" v-for="(item, index) in videoList" :key='index'>
-							<video style="width: 100%;height: 100%;" :src="item.name"></video>
+					<view class="img" style="background-color: #F8F8F8;" v-for="(item, index) in videoList" :key='index'>
+							<video style="width: 80%;height: 80%;margin-top: 20rpx;margin-right: 20rpx;" :src="item.name"></video>
 							<view @click.stop="DelVideo(index)" style="display: inline;">
 								<uni-icons type="closeempty" class="close" size="20"></uni-icons>
 							</view>
@@ -148,6 +136,7 @@
 				role:"",
 				account:"",
 				gradeclass_id:"",
+				release_time:"",
 				grade_name:"",
 				class_name:"",
 				name:"",
@@ -160,10 +149,9 @@
 				videoList:[],
 				imgName:"",
 				videoName:"",
-				statusList:["图片","视频"],
-				imgOrVideo:0,
-				r1:"",
-				r2:""
+				imgOrVideo:0, 
+				releaseTimeImg:"",     //图片发布时间
+				releaseTimeVideo:""     //视频发布时间
 			}
 		},
 		
@@ -188,10 +176,20 @@
 		onLoad(option) {
 			this.status = 0
 			this.gradeclass_id = option.gradeclass_id
+			this.release_time = option.release_time
+			this.imgOrVideo = option.imgOrVideo
 			this.token = uni.getStorageSync('token')
 			this.role = uni.getStorageSync('role')
 			this.account = uni.getStorageSync('account')
 			console.log(this.gradeclass_id)
+			console.log(this.release_time)
+			console.log(this.imgOrVideo)
+		},
+		
+		onShow() {
+			this.token = uni.getStorageSync('token')
+			this.role = uni.getStorageSync('role')
+			this.account = uni.getStorageSync('account')
 		},
 		
 		async mounted() {
@@ -213,7 +211,7 @@
 			await this.getGradeClassName()
 			
 			// 根据 account 获取成长记录发布者信息 
-			await this.getPersonalDetails()
+			// await this.getPersonalDetails()
 			
 			//关闭加载框
 			uni.hideLoading();
@@ -223,49 +221,20 @@
 		methods:{
 			...mapActions({
 				saveImg:'growRecord/saveImg',
-				recordInformation:'growRecord/recordInformation',
+				recordInformationDetails:'growRecord/recordInformationDetails',
 				updateRecord:'growRecord/updateRecord',
 				deleteRecord:'growRecord/deleteRecord',
 				gradeClassName:'index/gradeClassName',
-				personalDetails:'address/personalDetails'
+				personalDetails:'address/personalDetails',
+				updateShowBadge:'growRecord/updateShowBadge'
 			}),
-			
-			radioChange(e){
-				// 显示加载框
-				uni.showLoading({
-				    title: '加载中...'
-				});
-				
-				this.imgOrVideo = "0"
-				console.log(e.target.value)
-				if(e.target.value == "图片"){
-					this.imgOrVideo = "0"
-					this.getRecordInformationImg()
-				}else{
-					this.imgOrVideo = "1"
-					this.getRecordInformationVideo()
-				}
-				//关闭加载框
-				uni.hideLoading();
-				
-			},
-			
-			getStatusValue(e,i){
-				if(e == "图片"){
-					this.imgOrVideo = "0"
-				}else{
-					this.imgOrVideo = "1"
-				}
-			},
 			
 			// 根据 gradeclass_id 获取成长记录  图片
 			getRecordInformationImg(){
 				console.log(this.gradecalss_id)
-				this.recordInformation({
+				this.recordInformationDetails({
 					"gradeclass_id":this.gradeclass_id,
-					"showBadge":this.showBadgeImg,
-					"curPage":this.curPage,
-					"pageSize":this.pageSize,
+					"release_time":this.release_time,
 					"status":"0"
 				}).then(res => {
 					console.log(res)
@@ -276,14 +245,53 @@
 							mask:true,
 						    duration: 2000
 						});
-						uni.navigateTo({
-						    url:"../growRecord/index",
-						})
 					}else{
 						for(let i = 0; i < res.data.length; i ++){
 							res.data[i].name = config.BASIC_API + res.data[i].name
 						}
 						this.imgList = res.data
+						console.log()
+						
+						this.personalDetails({"account":res.data[0].account}).then(res => {
+							console.log(res)
+							this.name = res.data.name
+						})
+						
+						const id = res.data[0].id
+						
+						for(let i = 1; i < res.data.length; i ++){
+							id = id + "," + res.data[i].id
+						}
+						
+						if(this.role == 1){
+							if(res.data[0].show_teacher == "1"){
+								//修改数据库里的 showBadge 属性
+								this.updateShowBadge({
+									"id":id,
+									"gradeclass_id":this.gradeclass_id,
+									"release_time":this.release_time,
+									"show_teacher":"0",
+									"show_student":res.data[0].show_student
+								}).then(re => {
+									console.log(re)
+								})
+							}
+						}
+						
+						if(this.role == 2){
+							if(res.data[0].show_student == "1"){
+								//修改数据库里的 showBadge 属性
+								this.updateShowBadge({
+									"id":id,
+									"gradeclass_id":this.gradeclass_id,
+									"release_time":this.release_time,
+									"show_teacher":res.data[0].show_teacher,
+									"show_student":"0"
+								}).then(re => {
+									console.log(re)
+								})
+							}
+						}
 					}
 				})
 			},
@@ -291,11 +299,9 @@
 			// 根据 gradeclass_id 获取成长记录  视频
 			getRecordInformationVideo(){
 				console.log(this.gradeclass_id)
-				this.recordInformation({ 
+				this.recordInformationDetails({ 
 					"gradeclass_id":this.gradeclass_id,
-					"showBadge":this.showBadgeVideo,
-					"curPage":this.curPage,
-					"pageSize":this.pageSizeVideo,
+					"release_time":this.release_time,
 					"status":"1"
 				}).then(res => {
 					console.log(res)
@@ -311,6 +317,47 @@
 							res.data[i].name = config.BASIC_API + res.data[i].name
 						}
 						this.videoList = res.data
+						
+						this.personalDetails({"account":res.data[0].account}).then(res => {
+							console.log(res)
+							this.name = res.data.name
+						})
+						
+						const id = res.data[0].id
+						
+						for(let i = 1; i < res.data.length; i ++){
+							id = id + "," + res.data[i].id
+						}
+						
+						if(this.role == 1){
+							if(res.data[0].show_teacher == "1"){
+								//修改数据库里的 showBadge 属性
+								this.updateShowBadge({
+									"id":id,
+									"gradeclass_id":this.gradeclass_id,
+									"release_time":this.release_time,
+									"show_teacher":"0",
+									"show_student":res.data[0].show_student
+								}).then(re => {
+									console.log(re)
+								})
+							}
+						}
+						
+						if(this.role == 2){
+							if(res.data.show_student == "1"){
+								//修改数据库里的 showBadge 属性
+								this.updateShowBadge({
+									"id":id,
+									"gradeclass_id":this.gradeclass_id,
+									"release_time":this.release_time,
+									"show_teacher":res.data[0].show_teacher,
+									"show_student":"0"
+								}).then(re => {
+									console.log(re)
+								})
+							}
+						}
 					}
 				})
 			},
@@ -325,12 +372,12 @@
 			},
 			
 			// 根据 account 获取通知发布者信息
-			getPersonalDetails(){
-				this.personalDetails({"account":this.account}).then(res => {
-					console.log(res)
-					this.name = res.data.name
-				})
-			},
+			// getPersonalDetails(){
+			// 	this.personalDetails({"account":this.account}).then(res => {
+			// 		console.log(res)
+			// 		this.name = res.data.name
+			// 	})
+			// },
 			
 			update(){
 				this.status = 1
@@ -353,7 +400,8 @@
 				this.updateRecord({
 					"gradeclass_id": this.gradeclass_id,
 					"description":this.descriptionImg,
-					"showBadge":"1"
+					"release_time":this.release_time,
+					"show_teacher":"1"
 				}).then(res => {
 					console.log(res)
 					if(res.code == 1){
@@ -372,7 +420,8 @@
 				this.updateRecord({
 					"gradeclass_id": this.gradeclass_id,
 					"description":this.descriptionVedio,
-					"showBadge":"2"
+					"release_time":this.release_time,
+					"show_teacher":"1"
 				}).then(res => {
 					console.log(res)
 					if(res.code == 1){
@@ -699,7 +748,8 @@
 	.close {
 		position: absolute;
 		right: 0;
-		background-color: rgba(0, 0, 0, .4);
+		background-color: #fff;
+		opacity: 0.5;
 		color: #fff;
 	}
 	.camera {

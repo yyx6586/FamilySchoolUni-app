@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view>
+		<view v-if="deleteScuess == 0">
 			<!-- 发布者 -->
 			<view style="background-color: #FFFFFF;padding-bottom: 10rpx;">
 				<view style="margin-left: 30rpx;border-bottom: 1rpx solid #F5F5F5;height: 80rpx;width: 120rpx;line-height: 80rpx;vertical-align: center;">发布者</view>
@@ -50,6 +50,8 @@
 				<button class="reset-btn" @click="confirm">确认</button>
 			</view>
 		</view>
+		
+		<view v-if="deleteScuess == 1"></view>
 	</view>
 </template>
 
@@ -73,20 +75,25 @@
 				update_time:"",
 				grade_name:"",
 				class_name:"",
-				status:0
+				status:0,
+				deleteScuess:0
 			}
 		},
 		onLoad(option){                               //opthin为object类型，会序列化上页面传递的参数
 		    this.status = 0
+			this.deleteScuess = 0
 		    this.id = option.id
-			this.showBadge = option.showBadge
 			this.grade_id = option.grade_id
 			this.account = option.account
 			this.role = uni.getStorageSync('role')
 			console.log(this.id)      //打印出上页面传递的参数
-			console.log(this.showBadge)
 			
 		},
+		
+		onShow() {
+			this.role = uni.getStorageSync('role')
+		},
+		
 		async mounted() {
 			// 显示加载框
 			uni.showLoading({
@@ -102,8 +109,8 @@
 			// 根据 account 获取通知发布者信息
 			await this.getPersonalDetails()
 			
-			// 修改数据库里的 showBadge 属性
-			await this.getUpdateShowBadge()
+			// // 修改数据库里的 showBadge 属性
+			// await this.getUpdateShowBadge()
 			
 			//关闭加载框
 			uni.hideLoading();
@@ -138,20 +145,6 @@
 				updateShowBadge:'notice/updateShowBadge'
 			}),
 			
-			// 修改数据库里的 showBadge 属性
-			getUpdateShowBadge(){
-				if(this.showBadge == "true"){
-					this.showBadge = "false"
-					
-					this.updateShowBadge({
-						"id":this.id,
-						"showBadge":this.showBadge
-					}).then(res => {
-						console.log(res)
-					})
-				}
-			},
-			
 			// 根据 id 获取通知信息
 			getInformationDetails() {
 				this.informationById({"id":this.id}).then(res => {
@@ -161,6 +154,30 @@
 					this.information = res.data.information
 					this.informationBack = res.data.information
 					this.update_time = res.data.update_time
+					
+					if(this.role == 1){
+						if(res.data.show_teacher == "1"){
+							this.updateShowBadge({
+								"id":this.id, 
+								"show_teacher":"0",
+								"show_student":res.data.show_student
+							}).then(res => {
+								console.log(res) 
+							})
+						}
+					}
+					
+					if(this.role == 2){
+						if(res.data.show_student == "1"){
+							this.updateShowBadge({
+								"id":this.id, 
+								"show_teacher":res.data.show_teacher,
+								"show_student":"0"
+							}).then(res => {
+								console.log(res) 
+							})
+						}
+					}
 				})
 			},
 			
@@ -204,7 +221,7 @@
 					"id": this.id,
 					"title":this.title,
 					"information":this.information,
-					"showBadge":"true"
+					"show_teacher":"1"
 				}).then(res => {
 					console.log(res)
 					if(res.code == 1){
@@ -240,10 +257,9 @@
 						mask:true,
 					    duration: 2000
 					});
-				})
-				
-				uni.navigateTo({
-					url:"./release"
+					if(res.code == 1){
+						this.deleteScuess = 1
+					}
 				})
 				
 				//关闭加载框

@@ -1,6 +1,6 @@
 //访问端口
 // export const BASIC_API = "http://192.168.31.65:8081/";
-export const BASIC_API = "http://10.163.208.196:8081/";
+export const BASIC_API = "http://192.168.43.129:8081/";
 
 //登录
 export const LOGIN_API = BASIC_API + "user/signIn";
@@ -71,11 +71,17 @@ export const IMGUPLOAD_API = BASIC_API + "growRecord/imgUpload";
 // 上传图片到数据库
 export const SAVEIMG_API = BASIC_API + "growRecord/saveImg";   
 
-// 根据 gradeclass_id 获取成长记录
+// 根据 gradeclass_id 获取成长记录列表
 export const RECORDINFORMATION_API = BASIC_API + "growRecord/recordInformation"; 
+
+// 根据 gradeclass_id 获取成长记录详情
+export const RECORDINFORMATIONDETAILS_API = BASIC_API + "growRecord/recordInformationDetails"; 
 
 // 根据 gradeclass_id 与 描述 修改成长记录
 export const UPDATERECORD_API = BASIC_API + "growRecord/updateRecord";
+
+// 修改数据库里的 showBadge 属性
+export const SHOWBADGERECORD_API = BASIC_API + "growRecord/updateRecordShowBadge";
  
 // 根据 id 删除成长记录
 export const DELETERECORD_API = BASIC_API + "growRecord/deleteRecord";

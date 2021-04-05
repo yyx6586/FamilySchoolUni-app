@@ -4,6 +4,11 @@
 		<carousel :img-list="imgList" url-key="url" @selected="selectedBanner"/>
 		
 		<!-- 年级与班级 -->
+		<!-- 家长 -->
+		<view v-if="role == 2" style="display: flex;flex-direction: row;justify-content:flex-start;margin-top: 20rpx;">
+			<view style="margin-left: 70rpx;font-size: 40rpx;margin-left: 80rpx;">{{nianji + " " + banji}}</view>
+		</view>
+		
 		<!-- 教师 -->
 		<view v-if="role == 1" style="display: flex;flex-direction: row;justify-content:flex-start;margin-top: 20rpx;">
 			<view style="margin-left: 70rpx;">
@@ -14,14 +19,9 @@
 			</view>
 		</view>
 		
-		<!-- 家长 -->
-		<view v-if="role == 2" style="margin-left: -360rpx;margin-top: 20rpx;">
-			<view style="font-size: 40rpx;">{{ nianji + bnaji}}</view>
-		</view>
-		
 		<!-- 功能选择 -->
 		<view style="margin-top: 20rpx;">
-			<grid :gridList="gridList" @click="goToVue"/>  
+			<grid :gridList="gridList" @click="goToVue"/>   
 		</view>
 	</view> 
 </template>
@@ -89,25 +89,65 @@
 		},
 		onLoad() {
 			this.role = uni.getStorageSync('role')
-			console.log(uni.getStorageSync('token'))
+			console.log(this.role)
+		}, 
+		
+		onShow() {
+			this.role = uni.getStorageSync('role')
+			
+			// 显示加载框
+			uni.showLoading({
+			    title: '加载中...'  
+			})
+			
+			if(this.role == 2){
+				this.selectGrade({
+					"account":uni.getStorageSync('account') 
+				}).then(res => {
+					console.log(res)
+					if (res.data != null) {
+						this.gradeclass_id = res.data.grade_id
+						this.gradeClassName({
+							"gradeclass_id":res.data.grade_id 
+						}).then(re => {
+							console.log(re)
+							this.nianji = re.data.grade_name  
+							this.banji = re.data.class_name
+						})
+					}else{
+						uni.showToast({
+						    title: '获取年级与班级错误，请重新登录！',
+							icon:'none',
+							mask:true,
+						    duration: 2000
+						});
+						return;
+					}
+				})
+			}
+			
+			//关闭加载框
+			uni.hideLoading();
 		},
+		
 		async mounted() {
 			// 显示加载框
 			uni.showLoading({
-			    title: '加载中...'
+			    title: '加载中...'  
 			})
 			
 		    if(this.role == 2){
 				await this.selectGrade({
-					"account":uni.getStorageSync('account')
+					"account":uni.getStorageSync('account') 
 				}).then(res => {
+					console.log(res)
 					if (res.data != null) {
-						this.gradeclass_id = res.data.gradeclass_id
+						this.gradeclass_id = res.data.grade_id
 						this.gradeClassName({
-							"gradeclass_id":res.data.gradeclass_id
+							"gradeclass_id":res.data.grade_id 
 						}).then(re => {
 							console.log(re)
-							this.nianji = re.data.grade_name
+							this.nianji = re.data.grade_name  
 							this.banji = re.data.class_name
 						})
 					}else{
@@ -256,7 +296,7 @@
 							})
 						}else{
 						    uni.navigateTo({
-							    url:"../growRecord/release?gradeclass_id=" + this.gradeclass_id,
+							    url:"../growRecord/releaseList?gradeclass_id=" + this.gradeclass_id,
 						    })
 						    //关闭加载框
 						    uni.hideLoading();
@@ -320,7 +360,7 @@
 					}else{
 						uni.navigateTo({
 							url:"../notice/release?gradeclass_id=" + this.gradeclass_id,
-						})
+						}) 
 						//关闭加载框
 						uni.hideLoading();
 					}

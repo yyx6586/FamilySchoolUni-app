@@ -63,6 +63,12 @@
 			console.log(this.gradeclass_id)
 		},
 		
+		onShow() {
+			this.title = "",
+			this.content = ""
+			this.account = uni.getStorageSync('account')
+		},
+		
 		methods:{
 			...mapActions({
 				homework:'homework/homework'
@@ -123,7 +129,8 @@
 					"title":this.title,
 					"subject_name":this.subject_name,
 					"homework":this.content,
-					"showBadge":"true" 
+					"show_teacher":"1",
+					"show_student":"1"
 				}).then(res => {
 					console.log(res)
 					uni.showToast({

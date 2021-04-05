@@ -66,6 +66,30 @@
 			console.log(this.account)
 		},
 		
+		onShow() {
+			// 显示加载框
+			uni.showLoading({
+			    title: '加载中...'
+			});
+			
+			this.name = uni.getStorageSync('name'),
+			this.account = uni.getStorageSync('account')
+			
+			// 查询头像
+			this.selectUrl({"account":this.account}).then(res => {
+			    console.log(res)
+				if(res.data != null){
+					this.src = config.BASIC_API + res.data.url
+					console.log(this.src)
+				}else{
+					this.src = "../../static/index/three.jpg" 
+				}
+			})
+			
+			//关闭加载框
+			uni.hideLoading();
+		},
+		
 		async mounted() {
 			// 显示加载框
 			uni.showLoading({

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view>
+		<view v-if="deleteScuess == 0">
 			<!-- 发布者 -->
 			<view style="background-color: #FFFFFF;padding-bottom: 10rpx;">
 				<view style="margin-left: 30rpx;border-bottom: 1rpx solid #F5F5F5;height: 80rpx;width: 120rpx;line-height: 80rpx;vertical-align: center;">发布者</view>
@@ -56,6 +56,7 @@
 				<button class="reset-btn" @click="confirm">确认</button>
 			</view>
 		</view>
+		<view v-if="deleteScuess == 1"></view>
 	</view>
 </template>
 
@@ -79,7 +80,8 @@
 				titleBack:"",
 				subject_name:"",
 				homework:"",
-				homeworkBack:""
+				homeworkBack:"",
+				deleteScuess:0
 			}
 		},
 		
@@ -103,14 +105,17 @@
 		
 		onLoad(option){                               //opthin为object类型，会序列化上页面传递的参数
 		    this.id = option.id
+			this.deleteScuess = 0
 			this.account = option.account
-			this.showBadge = option.showBadge
 			this.gradeclass_id = option.gradeclass_id
 			this.role = uni.getStorageSync('role')
 			console.log(this.id)      //打印出上页面传递的参数
 			console.log(this.account)
 			console.log(this.gradeclass_id)
-			console.log(this.showBadge)
+		},
+		
+		onShow() {
+			this.role = uni.getStorageSync('role')
 		},
 		
 		async mounted() {
@@ -128,8 +133,8 @@
 			// 根据 account 获取通知发布者信息
 			await this.getPersonalDetails()
 			
-			// 修改数据库里的 showBadge 属性
-			await this.getUpdateShowBadge()
+			// // 修改数据库里的 showBadge 属性
+			// await this.getUpdateShowBadge()
 			
 			//关闭加载框
 			uni.hideLoading();
@@ -146,21 +151,6 @@
 				updateShowBadge:'homework/updateShowBadge'
 			}),
 			
-			
-			// 修改数据库里的 showBadge 属性
-			getUpdateShowBadge(){
-				if(this.showBadge == "true"){
-					this.showBadge = "false"
-					
-					this.updateShowBadge({
-						"id":this.id,
-						"showBadge":this.showBadge
-					}).then(res => {
-						console.log(res)
-					})
-				}
-			},
-			
 			// 根据 id 获取作业信息
 			getHomeworkDetails(){
 				this.homeworkById({"id":this.id}).then(res => {
@@ -171,6 +161,30 @@
 					this.subject_name = res.data.subject_name 
 					this.homework = res.data.homework
 					this.homeworkBack = res.data.homework
+					
+					if(this.role == 1){
+						if(res.data.show_teacher == "1"){
+							this.updateShowBadge({
+								"id":this.id,
+								"show_teacher":"0",
+								"show_student":res.data.show_student
+							}).then(res => {
+								console.log(res)
+							})
+						}
+					}
+					
+					if(this.role == 2){
+						if(res.data.show_student == "1"){
+							this.updateShowBadge({
+								"id":this.id,
+								"show_teacher":res.data.show_teacher,
+								"show_student":"0"
+							}).then(res => {
+								console.log(res)
+							})
+						}
+					}
 				})
 			},
 			
@@ -214,7 +228,7 @@
 					"id": this.id,
 					"title":this.title,
 					"homework":this.homework,
-					"showBadge":"true"
+					"show_teacher":"1"
 				}).then(res => {
 					console.log(res)
 					if(res.code == 1){
@@ -250,10 +264,9 @@
 						mask:true,
 					    duration: 2000
 					});
-				})
-				
-				uni.navigateTo({
-					url:"./release"
+					if(res.code == 1){
+						this.deleteScuess = 1
+					}
 				})
 				
 				//关闭加载框

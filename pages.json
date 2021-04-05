@@ -101,6 +101,12 @@
 			"style": {
 				"navigationBarTitleText": "成绩详情"
 			}
+		},
+		{
+			"path": "pages/growRecord/releaseList",
+			"style": {
+				"navigationBarTitleText": "成长记录"
+			}
 		}
 	],
 	"globalStyle": {

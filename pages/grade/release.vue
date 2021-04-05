@@ -1,95 +1,103 @@
 <template>
 	<view>
-		
-		<!-- 考试科目 -->
-		<view class="first-view">
-			<view class="title-view">考试科目</view>
-			<view v-if="status == 0" class="value-view">{{score_subject}}</view>
-			<pullDown v-if="status == 1 && role == 1" class="value-view" :textList="subjectList" @click="getSubjectValue"></pullDown>
-		</view>
-		
-		<!-- 发布年级与班级 -->
-		<view class="first-view">
-			<view class="title-view">班级</view>
-			<view class="value-view">{{grade_name + " " + class_name}}</view>
-		</view>
-		
-		
-		
-		<view v-if="status == 1 && role == 1">
-			<!-- 考试名称 -->
-			<view class="first-view">
-				<view class="title-view">考试名称</view>
-				<pullDown class="value-view" :textList="scoreNameList" @click="getScoreName"></pullDown>
+		<view v-if="deleteScuess == 0">
+			<!-- 考试科目 -->
+			<view style="padding-left: 20rpx;margin-top: 30rpx;border-bottom: 1rpx solid #EAEAEA;">
+				<view style="margin-bottom: 10rpx;">请选择考试科目</view>
+				<picker @change="bindSubjectChange" :value="indexSubject" :range="subjectList" style="margin-bottom: 10rpx;">
+				    <view class="uni-input">{{subjectList[indexSubject]}}
+					    <image src="../../static/index/xiala.png" style="width: 35rpx;height: 30rpx;margin-left: 10rpx;"></image>
+					</view>
+				</picker>
 			</view>
 			
-			<!-- 考试时间 -->
-			<view class="first-view" style="margin-left: 20rpx;">
-				<view style="display: flex; flex-direction: row; justify-content:flex-start; align-items:center;">
-					
-					<!-- 年 -->
-					<view style="display: flex; flex-direction: row; justify-content:flex-start; align-items:flex-start;">
-						<input type="text" v-model="time[0]" placeholder="如:2021" placeholder-style="font-size:35rpx" style="width: 120rpx;"/>
-						<view>年</view> 
+			<!-- 考试名称 -->
+			<view style="padding-left: 20rpx;margin-top: 60rpx;border-bottom: 1rpx solid #EAEAEA;">
+				<view style="margin-bottom: 10rpx;">请选择考试名称</view>
+				<picker @change="bindNameChange" :value="indexName" :range="scoreNameList" style="margin-bottom: 10rpx;">
+				    <view class="uni-input">{{scoreNameList[indexName]}}
+					    <image src="../../static/index/xiala.png" style="width: 35rpx;height: 30rpx;margin-left: 10rpx;"></image>
 					</view>
-					
-					<!-- 月 -->
+				</picker>
+			</view>
+			
+			<!-- 发布年级与班级 -->
+			<view class="first-view">
+				<view class="title-view">班级</view>
+				<view class="value-view">{{grade_name + " " + class_name}}</view>
+			</view>
+			
+			
+			
+			<view v-if="status == 1 && role == 1">
+				
+				<!-- 考试时间 -->
+				<view class="first-view" style="margin-left: 20rpx;">
 					<view style="display: flex; flex-direction: row; justify-content:flex-start; align-items:center;">
-						<input type="text" v-model="time[1]" placeholder="如:01" placeholder-style="font-size:35rpx" style="width: 80rpx;margin-left: 10rpx;"/>
-						<view>月</view>
+						<view style="margin-right: 40rpx;">考试时间</view>
+						<!-- 年 -->
+						<view style="display: flex; flex-direction: row; justify-content:flex-start; align-items:flex-start;">
+							<input type="text" v-model="time[0]" placeholder="如:2021" placeholder-style="font-size:35rpx" style="width: 120rpx;"/>
+							<view>年</view> 
+						</view>
+						
+						<!-- 月 -->
+						<view style="display: flex; flex-direction: row; justify-content:flex-start; align-items:center;">
+							<input type="text" v-model="time[1]" placeholder="如:01" placeholder-style="font-size:35rpx" style="width: 80rpx;margin-left: 10rpx;"/>
+							<view>月</view>
+						</view>
+						
+						<!-- 日 -->
+						<view style="display: flex; flex-direction: row; justify-content:flex-start; align-items:center;">
+							<input type="text" v-model="time[2]" placeholder="如:01" placeholder-style="font-size:35rpx" style="width: 80rpx;margin-left: 10rpx;"/>
+							<view>日</view>
+						</view>
 					</view>
-					
-					<!-- 日 -->
-					<view style="display: flex; flex-direction: row; justify-content:flex-start; align-items:center;">
-						<input type="text" v-model="time[2]" placeholder="如:01" placeholder-style="font-size:35rpx" style="width: 80rpx;margin-left: 10rpx;"/>
-						<view>日</view>
+				</view>
+				
+				<!-- 考生 -->
+				<view>
+					<view style="padding-left: 20rpx;margin-top: 60rpx;background-color: #F5F5F5;height: 80rpx;line-height: 80rpx;vertical-align: center;">学生分数</view>
+					<view class="first-view" v-for="(item,index) in scoreList" :key="index">
+						<view class="title-view">{{item.student_account}}</view>
+						<input class="value-view" v-model="item.score" type="text" placeholder="请输入分数" placeholder-style="font-size:35rpx"/>
+					</view>
+				</view>
+				
+				<!-- 按钮 -->
+				<view class="first-view-btn">
+					<button class="submit-btn" @click="back">返回</button>
+					<button class="reset-btn" @click="confirm">确认</button>
+				</view>
+			</view>
+			
+			<view v-if="status == 0">
+				
+				<!-- 考试时间 -->
+				<view class="first-view">
+					<view class="title-view">考试时间</view>
+					<view class="value-view">{{scoreList[0].score_time}}</view>
+				</view>
+				
+				<!-- 考生 -->
+				<view>
+					<view style="padding-left: 20rpx;margin-top: 60rpx;background-color: #F5F5F5;height: 80rpx;line-height: 80rpx;vertical-align: center;">学生分数</view>
+					<view class="first-view" v-for="(item,index) in scoreList" :key="index">
+						<view class="title-view">{{item.student_account}}</view>
+						<view class="value-view">{{item.score}}</view>
 					</view>
 				</view>
 			</view>
 			
-			<!-- 考生 -->
-			<view class="first-view" v-for="(item,index) in scoreList" :key="index">
-				<view class="title-view">{{item.student_account}}</view>
-				<input class="value-view" v-model="item.score" type="text" placeholder="请输入分数" placeholder-style="font-size:35rpx"/>
-			</view>
-			
-			<!-- 按钮 -->
-			<view class="first-view-btn">
-				<button class="submit-btn" @click="back">返回</button>
-				<button class="reset-btn" @click="confirm">确认</button>
-			</view>
-		</view>
-		
-		<view v-if="status == 0">
-			<!-- 考试名称 -->
-			<view class="first-view">
-				<view class="title-view">考试名称</view>
-				<view class="value-view">{{score_name}}</view>
-			</view>
-			
-			<!-- 考试时间 -->
-			<view class="first-view">
-				<view class="title-view">考试时间</view>
-				<view class="value-view">{{scoreList[0].score_time}}</view>
-			</view>
-			
-			<!-- 考生 -->
-			<view>
-				<view style="margin-left: 20rpx;">分数</view>
-				<view class="first-view" v-for="(item,index) in scoreList" :key="index">
-					<view class="title-view">{{item.student_account}}</view>
-					<view class="value-view">{{item.score}}</view>
+			<view v-if="status == 0 && role == 1">
+				<!-- 按钮 -->
+				<view class="first-view-btn">
+					<button class="submit-btn" @click="update">修改</button>
+					<button class="reset-btn" @click="deleteHomework">删除</button> 
 				</view>
 			</view>
 		</view>
-		
-		<view v-if="status == 0 && role == 1">
-			<!-- 按钮 -->
-			<view class="first-view-btn">
-				<button class="submit-btn" @click="update">修改</button>
-				<button class="reset-btn" @click="deleteHomework">删除</button> 
-			</view>
-		</view>
+		<view v-if="deleteScuess == 1"></view>
 	</view>
 </template>
 
@@ -120,7 +128,10 @@
 				time:[],
 				score_subject:"",
 				allScore:"",
-				studentAccount:""
+				studentAccount:"",
+				deleteScuess:0,
+				indexSubject:0,
+				indexName:0
 			}
 		},
 		
@@ -132,6 +143,11 @@
 			console.log(this.gradeclass_id)
 			
 			console.log(this.subjectList)
+		},
+		
+		onShow() {
+			this.role = uni.getStorageSync('role')
+			this.account = uni.getStorageSync('account')
 		},
 		
 		async mounted() {
@@ -169,6 +185,25 @@
 				updateScore:'grade/updateScore'
 			}),
 			
+			
+			bindSubjectChange: function(e) {
+			    console.log('picker发送选择改变，携带值为', e.target.value)
+			    this.indexSubject = e.target.value
+				this.subject = this.subjectList[e.target.value]
+				
+				// 根据班级与年级 gradeclass_id 、科目、考试名称 查询该班级所有学生的考试成绩
+				this.getSelectStudentScore()
+			},
+			
+			bindNameChange: function(e) {
+			    console.log('picker发送选择改变，携带值为', e.target.value)
+			    this.indexName = e.target.value 
+				this.score_name = this.scoreNameList[e.target.value]
+				
+				// 根据班级与年级 gradeclass_id 、科目、考试名称 查询该班级所有学生的考试成绩
+				this.getSelectStudentScore()
+			},
+					
 			//获取科目名称
 			getSubjectValue(e,i){
 				this.subject = e
@@ -365,6 +400,10 @@
 						mask:true,
 					    duration: 2000
 					});
+					
+					if(res.code == 1){
+						this.deleteScuess = 1
+					}
 				})
 				
 				//关闭加载框
@@ -541,11 +580,6 @@
 				// 根据班级与年级 gradeclass_id 、科目、考试名称 删除该班级所有学生的考试成绩
 				this.getDeleteScore()
 				
-				//跳转回成绩首页
-				uni.navigateTo({
-					url:"./index"
-				})
-				
 				//关闭加载框
 				uni.hideLoading();
 			}
@@ -555,13 +589,13 @@
 
 <style>
 	.first-view{
-		height: 130rpx;
 		display: flex;
 		flex-direction: row;
 		justify-content:flex-start;
 		align-items:center;
-		margin-top: 30rpx;
+		margin-top: 60rpx;
 		background-color: #FFFFFF;
+		border-bottom: 1rpx solid #EAEAEA;
 	}
 	.title-view{
 		color: #333333;
@@ -572,6 +606,7 @@
 		color: #333333;
 		font-size: 38rpx;
 		word-break: break-word;
+		margin-bottom: 10rpx;
 	}
 	.first-view-btn{
 		display: flex;

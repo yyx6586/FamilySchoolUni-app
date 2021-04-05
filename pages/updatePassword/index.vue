@@ -32,9 +32,15 @@
 			return{
 				oldPassword:"",
 				newPassword:"",
-				confirmPassword:""
+				confirmPassword:"",
+				account:""
 			}
 		},
+		
+		onShow() {
+			this.account = uni.getStorageSync('account')
+		},
+		
 		methods:{
 			...mapActions({
 				updatePassword:'updatePassword/updatePassword'
@@ -82,7 +88,7 @@
 				}
 				
 				this.updatePassword({
-					"account": uni.getStorageSync('account'),
+					"account": account,
 					"password":md5(this.oldPassword),
 					"resetPassword":md5(this.newPassword) 
 				}).then(res => {

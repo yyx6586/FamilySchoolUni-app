@@ -16,7 +16,8 @@
 		    >
 		    <!-- 数据列表 -->
 		    <uni-list v-for="(item, index) in informationList" :key="index"> 
-		        <uni-list-item  :title="item.title" badgeType="error" badgeText="1" :rightText="item.update_time | formatDate" :note="item.information" clickable="true" @click="goToNoticeDetails(index)"></uni-list-item>
+		        <uni-list-item v-if="role == 1"  :title="item.title" badgeType="error" badgeText="1" :rightText="item.update_time | formatDate" :note="item.information" :showBadge="item.show_teacher" clickable="true" @click="goToNoticeDetails(index)"></uni-list-item>
+				<uni-list-item v-if="role == 2"  :title="item.title" badgeType="error" badgeText="1" :rightText="item.update_time | formatDate" :note="item.information" :showBadge="item.show_student" clickable="true" @click="goToNoticeDetails(index)"></uni-list-item>
 		    </uni-list>
 		</k-scroll-view>
 		
@@ -24,11 +25,18 @@
 </template>
 
 <script>
+	import kScrollView from '@/components/k-scroll-view/k-scroll-view.vue';
 	import {mapActions, mapMutations, mapState, mapGetters} from 'vuex';
 	import string from '@/utils/string.js'
 	export default{
+		components: {
+		    kScrollView
+		},
+		
 		data() {
 			return{
+				account:"",
+				role:"",
 				curPage: 0,     //当前第几条记录
 				pageSize: 20,   // 一页多少条记录
 				grade_id:"",
@@ -71,7 +79,26 @@
 		onLoad(option) {
 			console.log(this.curPage)
 			console.log(this.pageSize)
-			this.grade_id = option.grade_id 
+			this.grade_id = option.gradeclass_id 
+			console.log(option.gradeclass_id )
+			this.role = uni.getStorageSync('role')
+			this.account = uni.getStorageSync('account')
+			console.log(this.grade_id)
+		},
+		onShow() {
+			// 显示加载框
+			uni.showLoading({
+			    title: '加载中...'
+			})
+			
+			this.role = uni.getStorageSync('role')
+			this.account = uni.getStorageSync('account')
+			
+			//获取通知信息
+			this.getNoticeInformation()
+			
+			//关闭加载框
+			uni.hideLoading();
 		},
 		async mounted() {
 			// 显示加载框
@@ -98,7 +125,7 @@
 				})
 				
 				uni.navigateTo({
-					url:"noticeDetails?id=" + this.informationList[e].id + "&grade_id=" + this.informationList[e].grade_id + "&account=" + this.informationList[e].account + "&showBadge=" + this.informationList[e].showBadge,
+					url:"noticeDetails?id=" + this.informationList[e].id + "&grade_id=" + this.informationList[e].grade_id + "&account=" + this.informationList[e].account,
 				})
 				//关闭加载框
 				uni.hideLoading();
@@ -114,12 +141,24 @@
 					console.log(res)
 					if(res.data != null){
 						for(var i = 0; i < res.data.length; i ++){
-							if(res.data[i].showBadge == "true"){
-								res.data[i].showBadge = true
+							if(this.account == res.data[i].account){
+								res.data[i].show_teacher = false
 							}
 							
-							if(res.data[i].showBadge == "false"){
-								res.data[i].showBadge = false
+							if(res.data[i].show_teacher == "1"){
+								res.data[i].show_teacher = true
+							}
+							 
+							if(res.data[i].show_teacher == "0"){
+								res.data[i].show_teacher = false
+							}
+							
+							if(res.data[i].show_student == "1"){
+								res.data[i].show_student = true
+							}
+							
+							if(res.data[i].show_student == "0"){
+								res.data[i].show_student = false
 							}
 							
 							if(res.data[i].title.length > 9){
@@ -166,12 +205,24 @@
 					}).then(res => {
 						console.log(res)
 						for(var i = 0; i < res.data.length; i ++){
-							if(res.data[i].showBadge == "true"){
-								res.data[i].showBadge = true
+							if(this.account == res.data[i].account){
+								res.data[i].show_teacher = false
 							}
 							
-							if(res.data[i].showBadge == "false"){
-								res.data[i].showBadge = false
+							if(res.data[i].show_teacher == "1"){
+								res.data[i].show_teacher = true
+							}
+							
+							if(res.data[i].show_teacher == "0"){
+								res.data[i].show_teacher = false
+							}
+							
+							if(res.data[i].show_student == "1"){
+								res.data[i].show_student = true
+							}
+							
+							if(res.data[i].show_student == "0"){
+								res.data[i].show_student = false
 							}
 							
 							if(res.data.title[i].length > 9){

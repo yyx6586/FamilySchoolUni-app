@@ -25,14 +25,19 @@
 				default(){
 					return ''
 				}
-			}
+			},
+			count:{
+				type:Number,
+				default(){
+					return 0
+				}
+			},
 		},
 		
 		data(){
 			return{
 				showHidden:false,
-				inputValue:"",
-				count: 0
+				inputValue:""
 			}
 		},
 		methods:{

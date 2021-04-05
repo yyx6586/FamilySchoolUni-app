@@ -16,10 +16,23 @@ const actions = {
 		})
 	},
 	
-	// 根据 gradeclass_id 获取成长记录
+	// 根据 gradeclass_id 获取成长记录列表
 	recordInformation({commit,state},data){
 		return new Promise(async (resolve,reject) =>{
 			let res = await request.requestToken(config.RECORDINFORMATION_API,data)
+			if(res.jsonError && res.jsonError.length > 0){
+				reject(res.jsonError[0]._exceptionMessage);
+			}else{
+				resolve(res);
+				// console.log(res);
+			}
+		})
+	},
+	
+	// 根据 gradeclass_id 获取成长记录详情
+	recordInformationDetails({commit,state},data){
+		return new Promise(async (resolve,reject) =>{
+			let res = await request.requestToken(config.RECORDINFORMATIONDETAILS_API,data)
 			if(res.jsonError && res.jsonError.length > 0){
 				reject(res.jsonError[0]._exceptionMessage);
 			}else{
@@ -46,6 +59,19 @@ const actions = {
 	deleteRecord({commit,state},data){
 		return new Promise(async (resolve,reject) =>{
 			let res = await request.requestToken(config.DELETERECORD_API,data)
+			if(res.jsonError && res.jsonError.length > 0){
+				reject(res.jsonError[0]._exceptionMessage);
+			}else{
+				resolve(res);
+				// console.log(res);
+			}
+		})
+	},
+	
+	// 修改数据库里的 showBadge 属性
+	updateShowBadge({commit,state},data){
+		return new Promise(async (resolve,reject) =>{
+			let res = await request.requestToken(config.SHOWBADGERECORD_API,data)
 			if(res.jsonError && res.jsonError.length > 0){
 				reject(res.jsonError[0]._exceptionMessage);
 			}else{

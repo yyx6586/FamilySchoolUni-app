@@ -27,10 +27,7 @@
 				parentList:[]
 			}
 		},
-		// onLoad() {
-		// 	// 根据账号查询班级
-		// 	this.getGrade()
-		// },
+		
 		async mounted() {
 			// 显示加载框
 			uni.showLoading({
